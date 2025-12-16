@@ -792,7 +792,8 @@ img {
     backdrop-filter: blur(10px);
 }
 
-.collection-bubble:hover {
+.collection-bubble:hover,
+.collection-bubble.touch-active {
     transform: scale(1.25) !important;
     box-shadow: 0 20px 60px rgba(255, 165, 0, 0.5), 0 0 0 8px rgba(255, 165, 0, 0.3);
     border-color: #FFA500;
@@ -819,7 +820,8 @@ img {
     z-index: 1;
 }
 
-.collection-bubble:hover .bubble-image::after {
+.collection-bubble:hover .bubble-image::after,
+.collection-bubble.touch-active .bubble-image::after {
     background: rgba(0, 0, 0, 0.25);
 }
 
@@ -830,7 +832,8 @@ img {
     transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.collection-bubble:hover .bubble-image img {
+.collection-bubble:hover .bubble-image img,
+.collection-bubble.touch-active .bubble-image img {
     transform: scale(1.1);
     filter: brightness(0.75);
 }
@@ -854,7 +857,8 @@ img {
     background: none;
 }
 
-.collection-bubble:hover .bubble-label {
+.collection-bubble:hover .bubble-label,
+.collection-bubble.touch-active .bubble-label {
     opacity: 1;
     transform: translate(-50%, -50%);
 }
