@@ -1932,6 +1932,15 @@ footer {
     .scroll-down-arrow {
         bottom: 20px;
     }
+    
+    /* Fix hero background on mobile */
+    .hero-section {
+        background-attachment: scroll !important;
+        background-size: cover;
+        background-position: center center;
+        min-height: 100vh;
+        height: 100vh;
+    }
 }
 /* =========================================
    TRANSPARENT TO WHITE NAVIGATION (FIXED)
@@ -1954,6 +1963,7 @@ footer {
 .home .logo { color: #ffffff !important; transition: color 0.3s ease; }
 .home .menu a { color: #ffffff !important; transition: color 0.3s ease; }
 .home .has-dropdown::after { color: #ffffff !important; }
+.home .menu-toggle { color: #ffffff !important; transition: color 0.3s ease; }
 
 /* 2. SCROLLED STATE */
 /* When we scroll down, turn it white */
@@ -1966,6 +1976,7 @@ footer {
 .home nav.scrolled .logo { color: #000000 !important; }
 .home nav.scrolled .menu a { color: #000000 !important; }
 .home nav.scrolled .has-dropdown::after { color: #000000 !important; }
+.home nav.scrolled .menu-toggle { color: #000000 !important; }
 
 /* =========================================
    FIX: DROPDOWN COLORS ON HOMEPAGE
