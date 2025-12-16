@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+
+  <nav>
+        <a href="index.html" class="logo">grant luther</a>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            
+            <li>
+                <a href="photography.html" class="has-dropdown">Photography</a>
+                <ul class="dropdown">
+                    <li class="dropdown-section-header">USA</li>
+                    <li><a href="nyc.html">New York City</a></li>
+                    <li><a href="colorado.html">Colorado</a></li>
+                    <li><a href="nj.html">New Jersey</a></li>
+                    <li><a href="san francisco.html">San Francisco</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-section-header">International</li>
+                    <li><a href="singapore.html">Singapore</a></li>
+                    <li><a href="thailand.html">Thailand</a></li>
+                    <li><a href="greece.html">Greece</a></li>
+                    <li><a href="copenhagen.html">Copenhagen</a></li>
+                    <li><a href="croatia.html">Croatia</a></li>
+                    <li><a href="cayman.html">Cayman Islands</a></li>
+                    <li><a href="ecuador.html">Ecuador</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="design.html" class="has-dropdown">Design</a>
+                <ul class="dropdown">
+                    <li><a href="gazelle.html">Gazelle Group</a></li>
+                    <li><a href="mls.html">Major League Soccer</a></li>
+                    <li><a href="independent.html">Independent Work</a></li>
+                </ul>
+            </li>
+
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <div class="mobile-dropdown-toggle">Photography</div>
+                <ul class="mobile-dropdown">
+                    <li class="dropdown-section-header">USA</li>
+                    <li><a href="nyc.html">New York City</a></li>
+                    <li><a href="colorado.html">Colorado</a></li>
+                    <li><a href="nj.html">New Jersey</a></li>
+                    <li><a href="san francisco.html">San Francisco</a></li>
+                    <li class="dropdown-section-header">International</li>
+                    <li><a href="singapore.html">Singapore</a></li>
+                    <li><a href="thailand.html">Thailand</a></li>
+                    <li><a href="greece.html">Greece</a></li>
+                    <li><a href="copenhagen.html">Copenhagen</a></li>
+                    <li><a href="croatia.html">Croatia</a></li>
+                    <li><a href="cayman.html">Cayman Islands</a></li>
+                    <li><a href="ecuador.html">Ecuador</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="mobile-dropdown-toggle">Design</div>
+                <ul class="mobile-dropdown">
+                    <li><a href="gazelle.html">Gazelle Group</a></li>
+                    <li><a href="mls.html">Major League Soccer</a></li>
+                    <li><a href="independent.html">Independent Work</a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+ <header class="hero-section">
+    <div class="hero-background-overlay"></div>
+    
+    <!-- Floating Collection Bubbles -->
+    <div class="hero-collection-bubbles">
+        <a href="nyc.html" class="collection-bubble bubble-1">
+            <div class="bubble-image">
+                <img src="images/nyc/nyc-11.jpg" alt="New York City">
+            </div>
+            <div class="bubble-label">NYC</div>
+        </a>
+        
+        <a href="san francisco.html" class="collection-bubble bubble-2">
+            <div class="bubble-image">
+                <img src="images/sf/sf-1.jpg" alt="San Francisco">
+            </div>
+            <div class="bubble-label">SF</div>
+        </a>
+        
+        <a href="singapore.html" class="collection-bubble bubble-3">
+            <div class="bubble-image">
+                <img src="images/singapore/singapore-19.jpg" alt="Singapore">
+            </div>
+            <div class="bubble-label">Singapore</div>
+        </a>
+        
+        <a href="thailand.html" class="collection-bubble bubble-4">
+            <div class="bubble-image">
+                <img src="images/thailand/thailand-14.jpg" alt="Thailand">
+            </div>
+            <div class="bubble-label">Thailand</div>
+        </a>
+        
+        <a href="gazelle.html" class="collection-bubble bubble-5">
+            <div class="bubble-image">
+                <img src="images/gazelle/gazelle-4.png" alt="Gazelle Group">
+            </div>
+            <div class="bubble-label">Gazelle</div>
+        </a>
+        
+        <a href="colorado.html" class="collection-bubble bubble-6">
+            <div class="bubble-image">
+                <img src="images/colorado/colorado-19.jpeg" alt="Colorado">
+            </div>
+            <div class="bubble-label">Colorado</div>
+        </a>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-title-wrapper">
+            <h1 class="hero-title">
+                <span class="word" data-word="Seeing">Seeing</span>
+                <span class="word" data-word="the">the</span>
+                <span class="word" data-word="World">World</span>
+            </h1>
+        </div>
+        
+        <p class="hero-subtitle">Photography & Design from Grant Luther</p>
+        
+        <div class="hero-cta">
+            <a href="#collections" class="hero-button">
+                <span>Explore Work</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <a href="#collections" class="scroll-down-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+</header>
+
+<div class="section-header" id="collections">
+        <h1>Featured Collections</h1>
+    </div>
+
+    <section class="photography-collections">
+        
+        <a href="nyc.html" class="collection-row">
+            <div class="collection-image">
+                <img src="images/nyc/nyc-11.jpg" alt="New York City">
+            </div>
+            <div class="collection-info">
+                <h3>New York City</h3>
+                <p>Photography</p>
+            </div>
+        </a>
+
+        <a href="san francisco.html" class="collection-row">
+            <div class="collection-image">
+                <img src="images/sf/sf-1.jpg" alt="San Francisco">
+            </div>
+            <div class="collection-info">
+                <h3>San Francisco</h3>
+                <p>Photography</p>
+            </div>
+        </a>
+
+        <a href="gazelle.html" class="collection-row">
+            <div class="collection-image">
+                <img src="images/gazelle/gazelle-4.png" alt="Gazelle Group">
+            </div>
+            <div class="collection-info">
+                <h3>Gazelle Group</h3>
+                <p>Design</p>
+            </div>
+        </a>
+
+        <a href="singapore.html" class="collection-row">
+            <div class="collection-image">
+                <img src="images/singapore/singapore-19.jpg" alt="Singapore">
+            </div>
+            <div class="collection-info">
+                <h3>Singapore</h3>
+                <p>Photography</p>
+            </div>
+        </a>
+
+        <a href="thailand.html" class="collection-row">
+            <div class="collection-image">
+                <img src="images/thailand/thailand-14.jpg" alt="Thailand">
+            </div>
+            <div class="collection-info">
+                <h3>Thailand</h3>
+                <p>Photography</p>
+            </div>
+        </a>
+
+        <a href="colorado.html" class="collection-row">
+            <div class="collection-image">
+                <img src="images/colorado/colorado-19.jpeg" alt="Colorado">
+            </div>
+            <div class="collection-info">
+                <h3>Colorado</h3>
+                <p>Photography</p>
+            </div>
+        </a>
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="photography.html">Photography</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Photography</h4>
+                <ul>
+                    <li><a href="nyc.html">New York City</a></li>
+                    <li><a href="san francisco.html">San Francisco</a></li>
+                    <li><a href="colorado.html">Colorado</a></li>
+                    <li><a href="singapore.html">Singapore</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Design</h4>
+                <ul>
+                    <li><a href="gazelle.html">Gazelle Group</a></li>
+                    <li><a href="mls.html">Major League Soccer</a></li>
+                    <li><a href="independent.html">Independent Work</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Grant Luther. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // This detects when elements enter the screen
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1, // Trigger when 10% visible
+            rootMargin: '0px 0px -50px 0px' // Start animation slightly before element enters viewport
+        });
+
+        // Tell the observer to watch all photo items, grid items, and collection rows
+        const hiddenElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+<script>
+        // Find the navigation bar
+        const nav = document.querySelector('nav');
+        
+        // Listen for the scroll event
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 50 pixels down...
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled'); // Add the white background class
+            } else {
+                // Otherwise, if they are back at the top...
+                nav.classList.remove('scrolled'); // Remove it (go back to transparent)
+            }
+        });
+    </script>
+
+<script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+        
+        function toggleMobileMenu() {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', toggleMobileMenu);
+        }
+        
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', toggleMobileMenu);
+        }
+        
+        // Mobile dropdown toggles
+        mobileDropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const dropdown = this.nextElementSibling;
+                const isActive = dropdown.classList.contains('active');
+                
+                // Close all other dropdowns
+                document.querySelectorAll('.mobile-dropdown').forEach(dd => {
+                    dd.classList.remove('active');
+                });
+                document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Toggle current dropdown
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

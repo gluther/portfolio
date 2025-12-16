@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+        <a href="index.html" class="logo">Grant Luther</a>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            
+            <li>
+                <a href="photography.html" class="has-dropdown">Photography</a>
+                <ul class="dropdown">
+                    <li class="dropdown-section-header">USA</li>
+                    <li><a href="nyc.html">New York City</a></li>
+                    <li><a href="colorado.html">Colorado</a></li>
+                    <li><a href="nj.html">New Jersey</a></li>
+                    <li><a href="san francisco.html">San Francisco</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-section-header">International</li>
+                    <li><a href="singapore.html">Singapore</a></li>
+                    <li><a href="thailand.html">Thailand</a></li>
+                    <li><a href="greece.html">Greece</a></li>
+                    <li><a href="copenhagen.html">Copenhagen</a></li>
+                    <li><a href="croatia.html">Croatia</a></li>
+                    <li><a href="cayman.html">Cayman Islands</a></li>
+                    <li><a href="ecuador.html">Ecuador</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="design.html">Design</a>
+                <ul class="dropdown">
+                    <li><a href="gazelle.html">Gazelle Group</a></li>
+                    <li><a href="mls.html">Major League Soccer</a></li>
+                    <li><a href="independent.html">Independent Work</a></li>
+                </ul>
+            </li>
+
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <div class="mobile-dropdown-toggle">Photography</div>
+                <ul class="mobile-dropdown">
+                    <li class="dropdown-section-header">USA</li>
+                    <li><a href="nyc.html">New York City</a></li>
+                    <li><a href="colorado.html">Colorado</a></li>
+                    <li><a href="nj.html">New Jersey</a></li>
+                    <li><a href="san francisco.html">San Francisco</a></li>
+                    <li class="dropdown-section-header">International</li>
+                    <li><a href="singapore.html">Singapore</a></li>
+                    <li><a href="thailand.html">Thailand</a></li>
+                    <li><a href="greece.html">Greece</a></li>
+                    <li><a href="copenhagen.html">Copenhagen</a></li>
+                    <li><a href="croatia.html">Croatia</a></li>
+                    <li><a href="cayman.html">Cayman Islands</a></li>
+                    <li><a href="ecuador.html">Ecuador</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="mobile-dropdown-toggle">Design</div>
+                <ul class="mobile-dropdown">
+                    <li><a href="gazelle.html">Gazelle Group</a></li>
+                    <li><a href="mls.html">Major League Soccer</a></li>
+                    <li><a href="independent.html">Independent Work</a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <div class="about-photo">
+                <img src="images/about/about-1.png" alt="Grant Luther">
+            </div>
+            <div class="about-hero-text">
+                <h1 class="about-name">Grant Luther</h1>
+                <p class="about-tagline">Photographer & Designer</p>
+                <div class="about-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main About Content -->
+    <section class="about-content">
+        <!-- Stats Section -->
+        <div class="about-stats">
+            <div class="stat-item">
+                <div class="stat-number" data-target="22">0</div>
+                <div class="stat-icon">
+                    <svg class="plane-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="stat-label">Countries Visited</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="64">0</div>
+                <div class="stat-icon">
+                    <svg class="checkmark-icon" width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="checkmark-circle-bg" cx="25" cy="25" r="20" fill="none" stroke="#e0e0e0" stroke-width="3"/>
+                        <circle class="checkmark-circle" cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="125.6"/>
+                        <path class="checkmark-path" d="M15 25l6 6 10-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0"/>
+                    </svg>
+                </div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="25">0</div>
+                <div class="stat-icon">
+                    <svg class="clock-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="stat-label">Years Creating</div>
+            </div>
+        </div>
+
+        <!-- About Text Sections -->
+        <div class="about-sections">
+            <div class="about-section">
+                <h3>Photography</h3>
+                <p>
+                    My journey with photography began as a way to document travels and has evolved into 
+                    a passion for storytelling through images. I specialize in landscape photography, but have a newfound appreciation for urban photography after moving to New York City. I grew up shooting with a Canon EOS 60D but now use a Ricoh GR III.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h3>Design</h3>
+                <p>
+                    As a designer, I've worked with organizations like Major League Soccer, LIV Golf, and Gazelle Group, 
+                    creating visual identities and marketing materials that communicate effectively and 
+                    resonate with audiences. I believe in clean, purposeful design that serves both 
+                    form and function.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h3>Approach</h3>
+                <p>
+                    Whether behind a camera or a computer, my approach is rooted in observation, 
+                    experimentation, and attention to detail. I'm constantly learning, exploring 
+                    new techniques, and pushing creative boundaries to deliver work that stands out.
+                </p>
+            </div>
+        </div>
+
+        <!-- Skills/Interests -->
+        <div class="about-skills">
+            <h3>Software & Tools</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Adobe Illustrator</div>
+                <div class="skill-item">Adobe Photoshop</div>
+                <div class="skill-item">Adobe Lightroom</div>
+                <div class="skill-item">Adobe Premiere</div>
+                <div class="skill-item">Cursor/VS Code</div>
+                <div class="skill-item">FL Studio/Logic Pro X</div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="about-cta">
+            <p>Interested in working together?</p>
+            <a href="mailto:grantluther10@gmail.com" class="cta-button">Get in Touch</a>
+        </div>
+    </section>
+
+<script>
+        // Animated counter for stats
+        const animateCounter = (element, target) => {
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+            
+            updateCounter();
+        };
+        
+        // Start counter animation immediately on page load
+        const statsSection = document.querySelector('.about-stats');
+        if (statsSection) {
+            const statNumbers = statsSection.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                animateCounter(stat, target);
+            });
+        }
+    </script>
+
+<script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+        
+        function toggleMobileMenu() {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        if (menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
+        if (mobileOverlay) mobileOverlay.addEventListener('click', toggleMobileMenu);
+        
+        mobileDropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const dropdown = this.nextElementSibling;
+                const isActive = dropdown.classList.contains('active');
+                document.querySelectorAll('.mobile-dropdown').forEach(dd => dd.classList.remove('active'));
+                document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => t.classList.remove('active'));
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="photography.html">Photography</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Photography</h4>
+                <ul>
+                    <li><a href="nyc.html">New York City</a></li>
+                    <li><a href="san francisco.html">San Francisco</a></li>
+                    <li><a href="colorado.html">Colorado</a></li>
+                    <li><a href="singapore.html">Singapore</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Design</h4>
+                <ul>
+                    <li><a href="gazelle.html">Gazelle Group</a></li>
+                    <li><a href="mls.html">Major League Soccer</a></li>
+                    <li><a href="independent.html">Independent Work</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Grant Luther. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
