@@ -1855,6 +1855,7 @@ footer {
 .about-social-links {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
     opacity: 0;
@@ -1863,7 +1864,7 @@ footer {
 }
 
 .about-social-link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
@@ -1872,6 +1873,9 @@ footer {
     transition: color 0.3s ease, transform 0.3s ease;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.02);
+    position: relative;
+    padding: 0;
+    margin: 0;
 }
 
 .about-social-link:hover {
@@ -1890,6 +1894,17 @@ footer {
 .about-social-link svg {
     width: 24px;
     height: 24px;
+    display: block;
+    margin: auto;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-social-link:hover svg {
+    transform: translate(-50%, -50%);
 }
 
 .about-divider {
