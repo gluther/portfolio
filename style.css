@@ -1375,6 +1375,96 @@ img {
 }
 
 /* =========================================
+   VIEW ALL PROJECTS BUTTON
+   ========================================= */
+
+.view-all-projects {
+    text-align: center;
+    padding: 40px 40px;
+    background-color: #ffffff;
+}
+
+.view-all-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 60px;
+    background-color: transparent;
+    color: #111;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid #111;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.view-all-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    transition: left 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 0;
+}
+
+.view-all-button span,
+.view-all-button svg {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease, fill 0.3s ease;
+}
+
+.view-all-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+.view-all-button:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.view-all-button:hover::before {
+    left: 0;
+}
+
+.view-all-button:hover svg {
+    transform: translateX(4px);
+}
+
+.view-all-button svg {
+    transition: transform 0.3s ease, stroke 0.3s ease;
+}
+
+/* Mobile adjustments for view all button */
+@media (max-width: 768px) {
+    .view-all-projects {
+        padding: 40px 20px;
+    }
+    
+    .view-all-button {
+        padding: 18px 40px;
+        font-size: 0.95rem;
+        gap: 12px;
+    }
+    
+    .view-all-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* =========================================
    FOOTER STYLES
    ========================================= */
 
