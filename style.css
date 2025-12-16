@@ -1333,6 +1333,20 @@ img {
     filter: brightness(1.1) contrast(1.05);
 }
 
+.collection-image img.greece-cover {
+    object-position: left center;
+    transform: scale(1.15);
+}
+
+.collection-row:hover .collection-image img.greece-cover,
+.collection-row.touch-active .collection-image img.greece-cover {
+    transform: scale(1.25) translateX(-5px);
+}
+
+.collection-image img.sf-cover {
+    object-position: center 50%;
+}
+
 .collection-info {
     width: 40%;
     padding: 3rem 4rem;
