@@ -786,15 +786,24 @@ img {
     cursor: pointer;
     text-decoration: none;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.4s ease,
+                border-width 0.4s ease,
+                z-index 0.4s ease,
+                width 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     animation: bubbleFloat 15s ease-in-out infinite;
     border: 4px solid rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
+    transform-origin: center center;
 }
 
 .collection-bubble:hover,
 .collection-bubble.touch-active {
-    transform: scale(1.25) !important;
+    transform: scale(1.5) !important;
+    width: 270px !important;
+    height: 270px !important;
     box-shadow: 0 20px 60px rgba(255, 165, 0, 0.5), 0 0 0 8px rgba(255, 165, 0, 0.3);
     border-color: #FFA500;
     border-width: 5px;
@@ -885,12 +894,24 @@ img {
     height: 140px;
 }
 
+.bubble-3:hover,
+.bubble-3.touch-active {
+    width: 210px !important;
+    height: 210px !important;
+}
+
 .bubble-4 {
     top: 60%;
     right: 8%;
     animation-delay: -7.5s;
     width: 150px;
     height: 150px;
+}
+
+.bubble-4:hover,
+.bubble-4.touch-active {
+    width: 225px !important;
+    height: 225px !important;
 }
 
 .bubble-5 {
@@ -901,12 +922,24 @@ img {
     height: 130px;
 }
 
+.bubble-5:hover,
+.bubble-5.touch-active {
+    width: 195px !important;
+    height: 195px !important;
+}
+
 .bubble-6 {
     bottom: 15%;
     right: 20%;
     animation-delay: -12.5s;
     width: 170px;
     height: 170px;
+}
+
+.bubble-6:hover,
+.bubble-6.touch-active {
+    width: 255px !important;
+    height: 255px !important;
 }
 
 @keyframes bubbleFloat {
