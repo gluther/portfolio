@@ -210,5 +210,80 @@
             <p>&copy; 2026 Grant Luther. All rights reserved.</p>
             </div>
     </footer>
+
+<script>
+    // Mobile touch interactions for hover effects
+    (function() {
+        // Check if device supports touch
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        if (!isTouchDevice) return; // Only run on touch devices
+        
+        // Elements that should have touch hover effects
+        const touchElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row');
+        
+        touchElements.forEach(element => {
+            let touchTimeout;
+            let touchStartY = 0;
+            let touchStartX = 0;
+            let isScrolling = false;
+            
+            // Touch start - activate hover effect
+            element.addEventListener('touchstart', function(e) {
+                const touch = e.touches[0];
+                touchStartY = touch.clientY;
+                touchStartX = touch.clientX;
+                isScrolling = false;
+                
+                // Clear any existing timeout
+                clearTimeout(touchTimeout);
+                
+                // Add touch-active class
+                this.classList.add('touch-active');
+            }, { passive: true });
+            
+            // Touch move - check if scrolling, if so remove effect
+            element.addEventListener('touchmove', function(e) {
+                if (!e.touches[0]) return;
+                
+                const touch = e.touches[0];
+                const deltaY = Math.abs(touch.clientY - touchStartY);
+                const deltaX = Math.abs(touch.clientX - touchStartX);
+                
+                // If significant movement, user is scrolling
+                if (deltaY > 10 || deltaX > 10) {
+                    isScrolling = true;
+                    clearTimeout(touchTimeout);
+                    this.classList.remove('touch-active');
+                } else {
+                    // Keep active if still touching the element
+                    this.classList.add('touch-active');
+                }
+            }, { passive: true });
+            
+            // Touch end - remove hover effect after a delay
+            element.addEventListener('touchend', function(e) {
+                const self = this;
+                
+                // If user was scrolling, remove immediately
+                if (isScrolling) {
+                    this.classList.remove('touch-active');
+                    return;
+                }
+                
+                // Otherwise, remove after a short delay
+                touchTimeout = setTimeout(function() {
+                    self.classList.remove('touch-active');
+                }, 400);
+            }, { passive: true });
+            
+            // Touch cancel - remove hover effect immediately
+            element.addEventListener('touchcancel', function() {
+                clearTimeout(touchTimeout);
+                this.classList.remove('touch-active');
+            }, { passive: true });
+        });
+    })();
+</script>
 </body>
 </html>

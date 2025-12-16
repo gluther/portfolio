@@ -118,7 +118,8 @@ nav {
 }
 
 /* TILT EFFECT ON HOVER */
-.photo-item:hover img {
+.photo-item:hover img,
+.photo-item.touch-active img {
     transform: rotate3d(1, -1, 0, 5deg) scale(1.02); /* Subtle 3D tilt + slight scale */
 }
 
@@ -134,7 +135,8 @@ nav {
     transition: opacity 0.4s ease;
 }
 
-.photo-item:hover .overlay {
+.photo-item:hover .overlay,
+.photo-item.touch-active .overlay {
     opacity: 1;
 }
 
@@ -580,7 +582,8 @@ nav {
 }
 
 /* TILT EFFECT ON HOVER - Similar to MKG website */
-.masonry-grid .photo-item:hover img {
+.masonry-grid .photo-item:hover img,
+.masonry-grid .photo-item.touch-active img {
     transform: rotate3d(1, -1, 0, 5deg) translateY(-4px); /* Subtle 3D tilt + slight lift */
     box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Casts a shadow underneath */
     z-index: 2;
@@ -1192,12 +1195,15 @@ img {
 
 /* THE HOVER ACTION */
 /* Reveal overlay AND tilt + zoom image */
-.grid-item:hover::after { opacity: 1; }
-.grid-item:hover {
+.grid-item:hover::after,
+.grid-item.touch-active::after { opacity: 1; }
+.grid-item:hover,
+.grid-item.touch-active {
     transform: rotate3d(1, -1, 0, 8deg) translateY(-5px); /* Tilt + lift */
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.grid-item:hover img { 
+.grid-item:hover img,
+.grid-item.touch-active img { 
     transform: scale(1.08); /* Zoom the image */
 }
 
@@ -1225,7 +1231,8 @@ img {
 }
 
 /* Nudge text up slightly on hover */
-.grid-item:hover .grid-label {
+.grid-item:hover .grid-label,
+.grid-item.touch-active .grid-label {
     transform: translate(-50%, -60%);
     opacity: 1;
 }
@@ -1262,7 +1269,8 @@ img {
     transform: translateY(0) scale(1);
 }
 
-.collection-row:hover {
+.collection-row:hover,
+.collection-row.touch-active {
     transform: translateX(15px) scale(1.01);
     background-color: rgba(0, 78, 137, 0.05);
     box-shadow: -10px 0 30px rgba(0, 78, 137, 0.1);
@@ -1282,7 +1290,8 @@ img {
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.collection-row:hover .collection-image img {
+.collection-row:hover .collection-image img,
+.collection-row.touch-active .collection-image img {
     transform: scale(1.08) translateX(-5px);
     filter: brightness(1.1) contrast(1.05);
 }
@@ -1315,7 +1324,8 @@ img {
     margin: 0;
 }
 
-.collection-row:hover .collection-info h3 {
+.collection-row:hover .collection-info h3,
+.collection-row.touch-active .collection-info h3 {
     color: var(--color-primary);
     transform: translateX(5px);
 }
