@@ -162,7 +162,7 @@ nav {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 102;
+    z-index: 103;
     position: relative;
 }
 
@@ -189,7 +189,7 @@ nav {
 
 /* Mobile menu overlay */
 .mobile-menu-overlay {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -198,11 +198,15 @@ nav {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 100;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
 }
 
 .mobile-menu-overlay.active {
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .mobile-menu {
@@ -218,6 +222,34 @@ nav {
     overflow-y: auto;
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
     transition: right 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    padding: 0;
+    z-index: 102;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-menu-close:hover {
+    color: #555;
+    transform: rotate(90deg);
+}
+
+.mobile-menu-close svg {
+    width: 24px;
+    height: 24px;
 }
 
 .mobile-menu.active {
