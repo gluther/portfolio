@@ -6,6 +6,19 @@
     <title>Grant Luther</title>
     <link rel="icon" type="image/png" href="images/about/favicon.png">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Grant Luther - Photography & Design">
+    <meta property="og:description" content="Portfolio showcasing photography and design work by Grant Luther">
+    <meta property="og:image" content="images/about/opengraph.jpg">
+    <meta property="og:url" content="https://grantluther.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Grant Luther - Photography & Design">
+    <meta name="twitter:description" content="Portfolio showcasing photography and design work by Grant Luther">
+    <meta name="twitter:image" content="images/about/opengraph.jpg">
 </head>
 <body class="home">
 
@@ -206,63 +219,81 @@
 
     <section class="photography-collections">
         
-        <a href="nyc.html" class="collection-row">
-            <div class="collection-image">
+        <!-- NYC: Matching Thailand format exactly -->
+        <a href="nyc.html" class="collection-thailand">
+            <div class="collection-shape"></div>
+            <div class="collection-thailand-image">
                 <img src="images/nyc/nyc-11.jpg" alt="New York City">
             </div>
-            <div class="collection-info">
+            <div class="collection-thailand-info">
                 <h3>New York City</h3>
                 <p>Photography</p>
+                <div class="collection-accent"></div>
             </div>
         </a>
 
-        <a href="san francisco.html" class="collection-row">
-            <div class="collection-image">
+        <!-- San Francisco: Matching Thailand format exactly -->
+        <a href="san francisco.html" class="collection-thailand">
+            <div class="collection-shape"></div>
+            <div class="collection-thailand-image">
                 <img src="images/sf/sf-1.jpg" alt="San Francisco">
             </div>
-            <div class="collection-info">
+            <div class="collection-thailand-info">
                 <h3>San Francisco</h3>
                 <p>Photography</p>
+                <div class="collection-accent"></div>
             </div>
         </a>
 
-        <a href="gazelle.html" class="collection-row">
-            <div class="collection-image">
+        <!-- Gazelle: Matching Thailand format exactly -->
+        <a href="gazelle.html" class="collection-thailand">
+            <div class="collection-shape"></div>
+            <div class="collection-thailand-image">
                 <img src="images/gazelle/gazelle-4.png" alt="Gazelle Group">
             </div>
-            <div class="collection-info">
+            <div class="collection-thailand-info">
                 <h3>Gazelle Group</h3>
                 <p>Design</p>
+                <div class="collection-accent"></div>
             </div>
         </a>
 
-        <a href="singapore.html" class="collection-row">
-            <div class="collection-image">
+        <!-- Singapore: Matching Thailand format exactly -->
+        <a href="singapore.html" class="collection-thailand">
+            <div class="collection-shape"></div>
+            <div class="collection-thailand-image">
                 <img src="images/singapore/singapore-19.jpg" alt="Singapore">
             </div>
-            <div class="collection-info">
+            <div class="collection-thailand-info">
                 <h3>Singapore</h3>
                 <p>Photography</p>
+                <div class="collection-accent"></div>
             </div>
         </a>
 
-        <a href="thailand.html" class="collection-row">
-            <div class="collection-image">
+        <!-- Thailand: Organic Flowing - Curved, vibrant, tropical -->
+        <a href="thailand.html" class="collection-thailand">
+            <div class="collection-shape"></div>
+            <div class="collection-thailand-image">
                 <img src="images/thailand/thailand-14.jpg" alt="Thailand">
             </div>
-            <div class="collection-info">
+            <div class="collection-thailand-info">
                 <h3>Thailand</h3>
                 <p>Photography</p>
+                <div class="collection-accent"></div>
             </div>
         </a>
 
-        <a href="colorado.html" class="collection-row">
-            <div class="collection-image">
+        <!-- Colorado: Matching Thailand format exactly -->
+        <a href="colorado.html" class="collection-thailand">
+            <div class="collection-shape"></div>
+            <div class="collection-thailand-image">
                 <img src="images/colorado/colorado-19.jpeg" alt="Colorado">
             </div>
-            <div class="collection-info">
+            <div class="collection-thailand-info">
                 <h3>Colorado</h3>
                 <p>Photography</p>
+                <div class="collection-accent"></div>
             </div>
         </a>
 
@@ -289,13 +320,20 @@
                 </ul>
             </div>
             
-            <div class="footer-section">
+            <div class="footer-section footer-photography">
                 <h4>Photography</h4>
                 <ul>
                     <li><a href="nyc.html">New York City</a></li>
-                    <li><a href="san francisco.html">San Francisco</a></li>
                     <li><a href="colorado.html">Colorado</a></li>
+                    <li><a href="nj.html">New Jersey</a></li>
+                    <li><a href="san francisco.html">San Francisco</a></li>
                     <li><a href="singapore.html">Singapore</a></li>
+                    <li><a href="thailand.html">Thailand</a></li>
+                    <li><a href="greece.html">Greece</a></li>
+                    <li><a href="copenhagen.html">Copenhagen</a></li>
+                    <li><a href="croatia.html">Croatia</a></li>
+                    <li><a href="spain.html">Spain</a></li>
+                    <li><a href="ecuador.html">Ecuador</a></li>
                 </ul>
             </div>
             
@@ -344,7 +382,7 @@
         });
 
         // Tell the observer to watch all photo items, grid items, and collection rows
-        const hiddenElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row');
+        const hiddenElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row, .collection-thailand');
         hiddenElements.forEach((el) => observer.observe(el));
     </script>
 
@@ -432,7 +470,7 @@
         if (!isTouchDevice) return; // Only run on touch devices
         
         // Elements that should have touch hover effects
-        const touchElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row, .collection-bubble');
+        const touchElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row, .collection-bubble, .collection-thailand');
         
         touchElements.forEach(element => {
             let touchTimeout;

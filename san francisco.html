@@ -253,7 +253,7 @@
                 </ul>
             </div>
             
-            <div class="footer-section">
+            <div class="footer-section footer-photography">
                 <h4>Photography</h4>
                 <ul>
                     <li><a href="nyc.html">New York City</a></li>
@@ -401,5 +401,51 @@
             });
         });
     </script>
+<script>
+    // Theme Toggle Functionality
+    (function() {
+        // Get theme from localStorage or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Update switch position based on theme
+        function updateSwitchPosition(theme) {
+            const switches = document.querySelectorAll('.light-switch');
+            switches.forEach(switchEl => {
+                const thumb = switchEl.querySelector('.switch-thumb');
+                if (theme === 'dark') {
+                    thumb.style.transform = 'translateX(24px)';
+                } else {
+                    thumb.style.transform = 'translateX(0)';
+                }
+            });
+        }
+        
+        // Initialize switch position
+        updateSwitchPosition(currentTheme);
+        
+        // Toggle theme function
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateSwitchPosition(newTheme);
+        }
+        
+        // Add event listeners to both switches
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+        }
+    })();
+</script>
 </body>
 </html>
