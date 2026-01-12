@@ -24,6 +24,219 @@ body {
     overflow-x: hidden; /* Prevents side-scrolling issues */
 }
 
+/* =========================================
+   AWARD-WINNING WELCOME SCREEN
+   ========================================= */
+
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.welcome-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animated gradient background */
+.welcome-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #000 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    opacity: 0.8;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Scanline effect */
+.welcome-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    animation: scanlineMove 8s linear infinite;
+}
+
+@keyframes scanlineMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(20px); }
+}
+
+/* Content container */
+.welcome-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+/* Main text with letter animations */
+.welcome-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #fff;
+    display: inline-flex;
+    gap: 0.05em;
+    margin: 0;
+    line-height: 1;
+}
+
+.welcome-text .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotateX(90deg);
+    animation: letterReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5),
+                 0 0 60px rgba(255, 255, 255, 0.3);
+}
+
+.welcome-text .letter.space {
+    width: 0.3em;
+}
+
+/* Staggered letter animations */
+.welcome-text .letter:nth-child(1) { animation-delay: 0.1s; }
+.welcome-text .letter:nth-child(2) { animation-delay: 0.15s; }
+.welcome-text .letter:nth-child(3) { animation-delay: 0.2s; }
+.welcome-text .letter:nth-child(4) { animation-delay: 0.25s; }
+.welcome-text .letter:nth-child(5) { animation-delay: 0.3s; }
+.welcome-text .letter:nth-child(6) { animation-delay: 0.35s; }
+.welcome-text .letter:nth-child(7) { animation-delay: 0.4s; }
+.welcome-text .letter:nth-child(8) { animation-delay: 0.45s; }
+.welcome-text .letter:nth-child(9) { animation-delay: 0.5s; }
+.welcome-text .letter:nth-child(10) { animation-delay: 0.55s; }
+.welcome-text .letter:nth-child(11) { animation-delay: 0.6s; }
+.welcome-text .letter:nth-child(12) { animation-delay: 0.65s; }
+
+@keyframes letterReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) rotateX(90deg) scale(0.8);
+    }
+    60% {
+        transform: translateY(-10px) rotateX(-10deg) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+    }
+}
+
+/* Subtitle */
+.welcome-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: subtitleReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+}
+
+@keyframes subtitleReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Particle effects */
+.welcome-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.welcome-particles::before,
+.welcome-particles::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 
+        20vw 30vh 2px rgba(255, 255, 255, 0.5),
+        60vw 20vh 2px rgba(255, 255, 255, 0.3),
+        80vw 70vh 2px rgba(255, 255, 255, 0.4),
+        30vw 80vh 2px rgba(255, 255, 255, 0.3),
+        70vw 50vh 2px rgba(255, 255, 255, 0.5);
+    animation: particleFloat 15s ease-in-out infinite;
+}
+
+.welcome-particles::after {
+    animation-delay: -7.5s;
+    box-shadow: 
+        40vw 10vh 2px rgba(255, 255, 255, 0.4),
+        10vw 60vh 2px rgba(255, 255, 255, 0.3),
+        90vw 40vh 2px rgba(255, 255, 255, 0.5),
+        50vw 90vh 2px rgba(255, 255, 255, 0.3),
+        15vw 25vh 2px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translate(30px, -50px) scale(1.2);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-20px, -30px) scale(0.8);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translate(40px, 20px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* Additional particle styles for dynamically created particles */
+.welcome-particles > div {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Exit animation */
+.welcome-screen.fade-out .welcome-text .letter {
+    animation: letterExit 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes letterExit {
+    to {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+}
+
 /* NAVIGATION */
 nav {
     display: flex;
@@ -74,7 +287,7 @@ nav > * {
 .menu a {
     text-decoration: none;
     color: #111;
-    font-size: 0.95rem;
+    font-size: 1.25rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -522,10 +735,10 @@ nav > * {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    min-height: 36px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     color: #111;
     transition: color 0.3s ease, transform 0.3s ease;
     border-radius: 50%;
@@ -533,15 +746,13 @@ nav > * {
     flex-shrink: 0;
     position: relative;
     box-sizing: border-box;
-    /* Adjust this value to fine-tune vertical alignment: negative moves up, positive moves down */
-    transform: translateY(-6px);
 }
 
 
 .instagram-link:hover {
     color: #FFA500;
     background-color: rgba(255, 165, 0, 0.1);
-    transform: translateY(0px) scale(1.05);
+    transform: scale(1.05);
 }
 
 .instagram-link:hover svg {
@@ -551,7 +762,7 @@ nav > * {
 .linkedin-link:hover {
     color: #004E89;
     background-color: rgba(0, 78, 137, 0.1);
-    transform: translateY(0px) scale(1.05);
+    transform: scale(1.05);
 }
 
 .linkedin-link:hover svg {
@@ -560,8 +771,8 @@ nav > * {
 
 .instagram-link svg,
 .linkedin-link svg {
-    width: 1.15rem !important;
-    height: 1.15rem !important;
+    width: 1.4rem !important;
+    height: 1.4rem !important;
     display: block;
     margin: 0;
     padding: 0;
@@ -802,16 +1013,18 @@ img {
    MENU: PLUS SIGN + MOVEMENT COMBO
    ========================================= */
 
-/* 1. THE TEXT MOVEMENT */
+/* 1. THE TEXT WITH UNDERLINE EFFECT */
 .menu li a {
-    display: inline-block; /* Required for movement to work */
-    transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-block;
+    transition: color 0.3s ease;
+    text-decoration: none;
 }
 
-/* When hovering the MENU ITEM, move the text (and the plus) up */
+/* When hovering the MENU ITEM */
 .menu li:hover > a {
-    transform: translateY(-3px); /* The "Nudge" up */
-    color: #555; /* Optional: Text turns slightly gray */
+    color: #FFB84D; /* Light orange */
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 /* 2. THE PLUS SIGN SYMBOL */
@@ -900,6 +1113,29 @@ img {
     z-index: 1;
 }
 
+/* GL Monogram */
+.hero-monogram {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(15rem, 40vw, 30rem);
+    font-weight: 100;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+    /* Outline style */
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.1);
+}
+
 .hero-collection-bubbles {
     position: absolute;
     top: 0;
@@ -912,8 +1148,8 @@ img {
 
 .collection-bubble {
     position: absolute;
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     overflow: hidden;
     pointer-events: all;
@@ -935,14 +1171,23 @@ img {
 
 .collection-bubble:hover,
 .collection-bubble.touch-active {
-    transform: scale(1.5) !important;
-    width: 270px !important;
-    height: 270px !important;
+    transform: scale(1.5);
     box-shadow: 0 20px 60px rgba(255, 165, 0, 0.5), 0 0 0 8px rgba(255, 165, 0, 0.3);
     border-color: #FFA500;
     border-width: 5px;
     z-index: 10;
     animation-play-state: paused;
+}
+
+/* Preserve translateX for centered bubbles on hover */
+.bubble-2:hover,
+.bubble-2.touch-active {
+    transform: translateX(-50%) scale(1.5);
+}
+
+.bubble-6:hover,
+.bubble-6.touch-active {
+    transform: translateX(-50%) scale(1.5);
 }
 
 .bubble-image {
@@ -1007,73 +1252,89 @@ img {
 }
 
 .bubble-1 {
-    top: 15%;
-    left: 8%;
+    top: 10%;
+    left: 15%;
     animation-delay: 0s;
+    width: 200px;
+    height: 200px;
+}
+
+.bubble-1:hover,
+.bubble-1.touch-active {
+    width: 300px !important;
+    height: 300px !important;
 }
 
 .bubble-2 {
-    top: 25%;
-    right: 12%;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
     animation-delay: -2.5s;
-    width: 160px;
-    height: 160px;
+    width: 220px;
+    height: 220px;
+}
+
+.bubble-2:hover,
+.bubble-2.touch-active {
+    width: 330px !important;
+    height: 330px !important;
 }
 
 .bubble-3 {
-    top: 55%;
-    left: 5%;
+    top: 18%;
+    right: 18%;
     animation-delay: -5s;
-    width: 140px;
-    height: 140px;
+    width: 200px;
+    height: 200px;
 }
 
 .bubble-3:hover,
 .bubble-3.touch-active {
-    width: 210px !important;
-    height: 210px !important;
+    width: 300px !important;
+    height: 300px !important;
 }
 
 .bubble-4 {
-    top: 60%;
-    right: 8%;
+    top: 50%;
+    left: 10%;
     animation-delay: -7.5s;
-    width: 150px;
-    height: 150px;
+    width: 210px;
+    height: 210px;
 }
 
 .bubble-4:hover,
 .bubble-4.touch-active {
-    width: 225px !important;
-    height: 225px !important;
+    width: 315px !important;
+    height: 315px !important;
 }
 
 .bubble-5 {
-    bottom: 20%;
-    left: 15%;
+    top: 52%;
+    right: 12%;
     animation-delay: -10s;
-    width: 130px;
-    height: 130px;
+    width: 200px;
+    height: 200px;
 }
 
 .bubble-5:hover,
 .bubble-5.touch-active {
-    width: 195px !important;
-    height: 195px !important;
+    width: 300px !important;
+    height: 300px !important;
 }
 
 .bubble-6 {
-    bottom: 15%;
-    right: 20%;
+    bottom: 28%;
+    left: 50%;
+    transform: translateX(-50%);
     animation-delay: -12.5s;
-    width: 170px;
-    height: 170px;
+    width: 220px;
+    height: 220px;
 }
 
 .bubble-6:hover,
 .bubble-6.touch-active {
-    width: 255px !important;
-    height: 255px !important;
+    width: 330px !important;
+    height: 330px !important;
 }
 
 @keyframes bubbleFloat {
@@ -1166,6 +1427,15 @@ img {
 }
 
 .hero-cta {
+    position: absolute;
+    bottom: 170px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
     opacity: 0;
     animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.3s forwards;
 }
@@ -1173,52 +1443,37 @@ img {
 .hero-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    padding: 14px 32px;
-    background: #FFA500;
-    color: white;
+    padding: 16px 48px;
+    background: transparent;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    border: 1px solid #ffffff;
     border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 0 10px 30px rgba(255, 165, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
-    overflow: hidden;
-}
-
-.hero-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.hero-button:hover::before {
-    width: 300px;
-    height: 300px;
+    margin: 0 auto;
 }
 
 .hero-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(255, 165, 0, 0.5);
-    background: #FF8C00;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
 }
 
 .hero-button svg {
+    flex-shrink: 0;
     transition: transform 0.3s ease;
+    stroke-width: 1.5;
 }
 
 .hero-button:hover svg {
-    transform: translateX(5px);
+    transform: translateY(2px);
 }
 
 @keyframes heroFadeInUp {
@@ -2510,19 +2765,25 @@ footer {
     }
     
     .hero-cta {
-        margin-top: 0.75rem;
+        bottom: 150px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
     
     .hero-button {
-        padding: 12px 24px !important;
-        font-size: 0.8rem !important;
-        letter-spacing: 1.5px !important;
-        gap: 8px !important;
+        padding: 14px 36px !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 2px !important;
+        gap: 10px !important;
     }
     
     .hero-button svg {
         width: 14px !important;
         height: 14px !important;
+        stroke-width: 1.5;
     }
     
     .collection-bubble {
@@ -2545,7 +2806,18 @@ footer {
     }
     
     .scroll-down-arrow {
-        bottom: 20px;
+        bottom: 80px;
+    }
+    
+    .scroll-text {
+        font-size: 0.75rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .scroll-down-arrow svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 1.5;
     }
     
     /* Fix hero background on mobile */
@@ -2611,48 +2883,61 @@ footer {
 /* THE SCROLL ARROW */
 .scroll-down-arrow {
     position: absolute;
-    bottom: 40px;
+    bottom: 120px;
     left: 50%;
     transform: translateX(-50%);
     color: white;
     opacity: 0;
-    animation: arrowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards,
-               bounce 2s ease-in-out infinite 2.5s;
+    animation: arrowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
     transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
     z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
 }
 
 .scroll-down-arrow:hover {
     opacity: 1 !important;
-    transform: translateX(-50%) translateY(-8px);
-    color: var(--color-primary);
+    transform: translateX(-50%) translateY(-4px);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.scroll-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: inherit;
+    white-space: nowrap;
 }
 
 .scroll-down-arrow svg {
-    width: 40px;
-    height: 40px;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    width: 28px;
+    height: 28px;
+    stroke-width: 1.5;
     transition: transform 0.3s ease;
-}
-
-.scroll-down-arrow:hover svg {
-    transform: scale(1.1);
+    animation: arrowBounce 2s ease-in-out infinite 2.5s;
 }
 
 @keyframes arrowFadeIn {
     to {
-        opacity: 0.8;
+        opacity: 0.7;
     }
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { 
-        transform: translateX(-50%) translateY(0); 
+@keyframes arrowBounce {
+    0%, 100% { 
+        transform: translateY(0); 
     }
-    40% { 
-        transform: translateX(-50%) translateY(-12px); 
+    50% { 
+        transform: translateY(8px); 
     }
-    60% { 
-        transform: translateX(-50%) translateY(-6px); 
-    }
+}
+
+.scroll-down-arrow:hover svg {
+    animation: none;
+    transform: translateY(0) scale(1.1);
 }

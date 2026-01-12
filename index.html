@@ -22,6 +22,30 @@
 </head>
 <body class="home">
 
+  <!-- Award-Winning Welcome Screen -->
+  <div id="welcome-screen" class="welcome-screen">
+    <div class="welcome-gradient"></div>
+    <div class="welcome-scanlines"></div>
+    <div class="welcome-content">
+      <h1 class="welcome-text">
+        <span class="letter" data-letter="G">G</span>
+        <span class="letter" data-letter="R">R</span>
+        <span class="letter" data-letter="A">A</span>
+        <span class="letter" data-letter="N">N</span>
+        <span class="letter" data-letter="T">T</span>
+        <span class="letter space"></span>
+        <span class="letter" data-letter="L">L</span>
+        <span class="letter" data-letter="U">U</span>
+        <span class="letter" data-letter="T">T</span>
+        <span class="letter" data-letter="H">H</span>
+        <span class="letter" data-letter="E">E</span>
+        <span class="letter" data-letter="R">R</span>
+      </h1>
+      <div class="welcome-subtitle">Photographer & Designer</div>
+    </div>
+    <div class="welcome-particles"></div>
+  </div>
+
   <nav>
         <a href="index.html" class="logo">grant luther</a>
         <button class="menu-toggle" aria-label="Toggle menu">
@@ -143,6 +167,9 @@
  <header class="hero-section">
     <div class="hero-background-overlay"></div>
     
+    <!-- GL Monogram -->
+    <div class="hero-monogram" id="hero-monogram">GL</div>
+    
     <!-- Floating Collection Bubbles -->
     <div class="hero-collection-bubbles">
         <a href="nyc.html" class="collection-bubble bubble-1">
@@ -188,28 +215,11 @@
         </a>
     </div>
     
-    <div class="hero-content">
-        <div class="hero-title-wrapper">
-            <h1 class="hero-title">
-                <span class="word" data-word="Grant">Grant</span>
-                <span class="word" data-word="Luther">Luther</span>
-            </h1>
-        </div>
-        
-        <p class="hero-subtitle">Photography & Design</p>
-        
-        <div class="hero-cta">
-            <a href="#collections" class="hero-button">
-                <span>Explore Work</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
-        </div>
-    </div>
-
     <a href="#collections" class="scroll-down-arrow">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        <span class="scroll-text">EXPLORE WORK</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
     </a>
 </header>
 
@@ -533,6 +543,96 @@
                 this.classList.remove('touch-active');
             }, { passive: true });
         });
+    })();
+</script>
+
+<script>
+    // Award-Winning Welcome Screen Animation
+    (function() {
+        const welcomeScreen = document.getElementById('welcome-screen');
+        if (!welcomeScreen) return;
+        
+        // Prevent scrolling during welcome screen
+        document.body.style.overflow = 'hidden';
+        
+        // Create dynamic particles
+        function createParticles() {
+            const particlesContainer = welcomeScreen.querySelector('.welcome-particles');
+            if (!particlesContainer) return;
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 3 + 1 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255, 255, 255, ' + (Math.random() * 0.5 + 0.3) + ')';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = 'particleFloat ' + (Math.random() * 10 + 10) + 's ease-in-out infinite';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+        
+        // Start exit animation after display time
+        setTimeout(function() {
+            welcomeScreen.classList.add('fade-out');
+            
+            // Hide completely after fade
+            setTimeout(function() {
+                welcomeScreen.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 800);
+        }, 3000); // Show for 3 seconds
+    })();
+</script>
+
+<script>
+    // GL Monogram Parallax Effect
+    (function() {
+        const heroSection = document.querySelector('.hero-section');
+        const monogram = document.getElementById('hero-monogram');
+        
+        if (!heroSection || !monogram) return;
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        
+        // Smooth parallax movement
+        function updateParallax() {
+            // Calculate offset from center (-1 to 1)
+            const offsetX = (mouseX / window.innerWidth - 0.5) * 2;
+            const offsetY = (mouseY / window.innerHeight - 0.5) * 2;
+            
+            // Smooth interpolation for fluid movement
+            currentX += (offsetX * 30 - currentX) * 0.1;
+            currentY += (offsetY * 30 - currentY) * 0.1;
+            
+            // Apply transform
+            monogram.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+            
+            requestAnimationFrame(updateParallax);
+        }
+        
+        // Track mouse position
+        heroSection.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        }, { passive: true });
+        
+        // Reset on mouse leave
+        heroSection.addEventListener('mouseleave', function() {
+            mouseX = window.innerWidth / 2;
+            mouseY = window.innerHeight / 2;
+        }, { passive: true });
+        
+        // Start parallax animation
+        updateParallax();
     })();
 </script>
 </body>
