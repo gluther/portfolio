@@ -282,12 +282,14 @@ nav > * {
     list-style: none;
     display: flex;
     gap: 2.5rem;
+    align-self: flex-start; /* Override nav's align-items: center */
+    margin-top: 3px; /* Move menu items down slightly */
 }
 
 .menu a {
     text-decoration: none;
     color: #111;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -718,6 +720,7 @@ nav > * {
 .menu li {
     position: relative;
     padding-bottom: 10px; /* Bridge the gap so mouse doesn't slip */
+    padding-top: 3px; /* Move menu items down slightly */
     display: flex;
     align-items: center;
 }
