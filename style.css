@@ -1168,6 +1168,35 @@ img {
         transform: scale(1) rotate(0deg);
     }
 }
+
+.logo-emoji {
+    margin-bottom: -1rem;
+    display: inline-block;
+    animation: flagEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    height: 3rem;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.logo-emoji img {
+    height: 3rem;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.logo-emoji.logo-only {
+    margin-bottom: 0.5rem;
+}
+
+.logo-emoji.logo-with-padding {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+}
 /* =========================================
    HOMEPAGE HERO & GRID
    ========================================= */

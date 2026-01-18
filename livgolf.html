@@ -89,7 +89,9 @@
     </div>
 
     <section class="text-section" style="padding-bottom: 20px;">
-        <h2>LIV Golf</h2>
+        <div class="logo-emoji logo-only">
+            <img src="images/about/livgolflogo.jpg" alt="LIV Golf Logo" onerror="this.style.display='none'">
+        </div>
         <p>Front-end design work I have made for LIV Golf, featuring video content and creative assets that live on shop.livgolf.com.</p>
     </section>
 
@@ -100,7 +102,7 @@
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video src="images/livgolf/reebok ecom page kapture.mp4" muted loop playsinline autoplay preload="auto"></video>
+                        <video src="images/livgolf/reebok ecom page kapture.mp4#t=0.001" muted loop playsinline autoplay preload="metadata" poster=""></video>
                         <div class="video-progress-container">
                             <div class="video-progress-bar"></div>
                         </div>
@@ -123,7 +125,7 @@
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video data-src="images/livgolf/greyson x legion collection.mp4" muted loop playsinline preload="metadata"></video>
+                        <video data-src="images/livgolf/greyson x legion collection.mp4#t=0.001" muted loop playsinline preload="metadata" poster=""></video>
                         <div class="video-progress-container">
                             <div class="video-progress-bar"></div>
                         </div>
@@ -146,7 +148,7 @@
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video data-src="images/livgolf/riyadh homepage.mp4" muted loop playsinline preload="metadata"></video>
+                        <video data-src="images/livgolf/riyadh homepage.mp4#t=0.001" muted loop playsinline preload="metadata" poster=""></video>
                         <div class="video-progress-container">
                             <div class="video-progress-bar"></div>
                         </div>
@@ -169,7 +171,7 @@
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video data-src="images/livgolf/gift guide video.mp4" muted loop playsinline preload="metadata"></video>
+                        <video data-src="images/livgolf/gift guide video.mp4#t=0.001" muted loop playsinline preload="metadata" poster=""></video>
                         <div class="video-progress-container">
                             <div class="video-progress-bar"></div>
                         </div>
@@ -527,6 +529,7 @@
                                 const posterDataUrl = canvas.toDataURL('image/jpeg', 0.95);
                                 
                                 // Set poster attribute (this is what browsers use to display)
+                                // iOS requires the poster attribute to be explicitly set
                                 video.setAttribute('poster', posterDataUrl);
                                 video.poster = posterDataUrl;
                                 
@@ -565,8 +568,18 @@
         function loadVideoSource(video) {
             const dataSrc = video.getAttribute('data-src');
             if (dataSrc && !video.src) {
-                video.src = dataSrc;
+                // Ensure URL has #t=0.001 fragment for iOS compatibility
+                let videoSrc = dataSrc;
+                if (!videoSrc.includes('#t=')) {
+                    videoSrc += '#t=0.001';
+                }
+                video.src = videoSrc;
                 video.removeAttribute('data-src');
+                // Ensure preload and poster are set
+                video.setAttribute('preload', 'metadata');
+                if (!video.getAttribute('poster')) {
+                    video.setAttribute('poster', '');
+                }
                 return true;
             }
             return false;
@@ -588,20 +601,39 @@
             // This happens for all videos (both autoplay and manual)
             const setupPoster = () => {
                 generatePoster(video).then((posterUrl) => {
-                    if (posterUrl && video.paused) {
-                        // Ensure video is at the beginning to show poster
-                        video.currentTime = 0;
+                    if (posterUrl) {
+                        // Ensure poster attribute is set (critical for iOS)
+                        video.setAttribute('poster', posterUrl);
+                        video.poster = posterUrl;
+                        
+                        if (video.paused) {
+                            // Ensure video is at the beginning to show poster
+                            video.currentTime = 0;
+                        }
                     }
                 });
             };
             
             // Wait for video to load enough data to capture frame
+            // Use loadedmetadata for iOS compatibility
             if (video.readyState >= 2) {
                 // Video already has frame data
                 setupPoster();
             } else {
                 // Wait for loadeddata event (when first frame is available)
-                video.addEventListener('loadeddata', setupPoster, { once: true });
+                // Also listen for loadedmetadata for iOS
+                const setupPosterOnce = () => {
+                    setupPoster();
+                };
+                video.addEventListener('loadeddata', setupPosterOnce, { once: true });
+                video.addEventListener('loadedmetadata', () => {
+                    // On iOS, sometimes loadeddata doesn't fire, so try after metadata loads
+                    setTimeout(() => {
+                        if (video.readyState >= 2 && !video.poster) {
+                            setupPosterOnce();
+                        }
+                    }, 100);
+                }, { once: true });
             }
         });
         
@@ -669,10 +701,21 @@
             // Store reference to all videos for pause-others logic
             allVideos.push(video);
             
-            // Ensure video has required attributes
+            // Ensure video has required attributes for iOS compatibility
             video.setAttribute('muted', '');
             video.setAttribute('loop', '');
             video.setAttribute('playsinline', '');
+            video.setAttribute('preload', 'metadata');
+            
+            // Ensure poster attribute exists (will be populated by generatePoster)
+            if (!video.getAttribute('poster')) {
+                video.setAttribute('poster', '');
+            }
+            
+            // Ensure src URL has #t=0.001 fragment for iOS (if not already present)
+            if (video.src && !video.src.includes('#t=')) {
+                video.src = video.src + '#t=0.001';
+            }
             
             // First video: observe for autoplay
             if (index === 0) {
