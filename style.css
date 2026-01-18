@@ -3418,6 +3418,26 @@ footer {
     height: 100%;
     object-fit: contain;
     display: block;
+    background: #000;
+    pointer-events: auto; /* Allow video clicks for mobile tap-to-show */
+}
+
+/* Video Progress Bar */
+.video-progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+.video-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #B7FF00;
+    transition: width 0.1s linear;
 }
 
 /* Video Play/Pause Button */
@@ -3440,11 +3460,50 @@ footer {
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease;
     z-index: 10;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    pointer-events: auto; /* Ensure button is clickable when visible */
 }
 
-.macbook-screen-bezel:hover .video-play-button {
+/* Manual play button - visible when video is paused (default state) */
+.video-play-button.manual-play-button {
     opacity: 1;
     visibility: visible;
+}
+
+/* Desktop: Show play button on hover (even when playing) */
+@media (hover: hover) and (pointer: fine) {
+    /* Show button on hover - always visible when hovering */
+    .macbook-screen-bezel:hover .video-play-button {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Hide manual button when not hovering and video is playing */
+    .macbook-screen-bezel:not(:hover) video.playing ~ .video-progress-container ~ .video-play-button.manual-play-button {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    /* Keep button visible when paused (even if not hovering) */
+    .macbook-screen-bezel:not(:hover) video:not(.playing) ~ .video-progress-container ~ .video-play-button.manual-play-button {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Mobile: Hide play button when video is playing, show when paused or force-show */
+@media (hover: none) and (pointer: coarse) {
+    /* Hide button when video is playing (unless force-show) */
+    .macbook-screen-bezel video.playing ~ .video-progress-container ~ .video-play-button.manual-play-button:not(.force-show) {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    /* Show button when paused or force-show */
+    .macbook-screen-bezel video:not(.playing) ~ .video-progress-container ~ .video-play-button.manual-play-button,
+    .macbook-screen-bezel video.playing ~ .video-progress-container ~ .video-play-button.manual-play-button.force-show {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 .video-play-button:hover {

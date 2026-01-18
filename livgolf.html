@@ -95,12 +95,15 @@
 
     <!-- MacBook Pro Hardware Mockup and Videos Grid -->
     <section class="macbook-videos-section">
-        <!-- Left Column: Reebok Video -->
+        <!-- Left Column: Reebok Video (First - Autoplay) -->
         <div class="macbook-mockup-wrapper">
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video src="images/livgolf/reebok ecom page kapture.mp4" muted loop playsinline></video>
+                        <video src="images/livgolf/reebok ecom page kapture.mp4" muted loop playsinline autoplay preload="auto"></video>
+                        <div class="video-progress-container">
+                            <div class="video-progress-bar"></div>
+                        </div>
                         <button class="video-play-button" aria-label="Play video">
                             <svg class="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 5v14l11-7z" fill="currentColor"/>
@@ -115,13 +118,16 @@
             </div>
         </div>
         
-        <!-- Right Column: Greyson Video -->
+        <!-- Right Column: Greyson Video (Manual) -->
         <div class="macbook-mockup-wrapper">
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video src="images/livgolf/greyson x legion collection.mp4" muted loop playsinline></video>
-                        <button class="video-play-button" aria-label="Play video">
+                        <video data-src="images/livgolf/greyson x legion collection.mp4" muted loop playsinline preload="metadata"></video>
+                        <div class="video-progress-container">
+                            <div class="video-progress-bar"></div>
+                        </div>
+                        <button class="video-play-button manual-play-button" aria-label="Play video">
                             <svg class="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 5v14l11-7z" fill="currentColor"/>
                             </svg>
@@ -135,13 +141,16 @@
             </div>
         </div>
         
-        <!-- Third Column: Riyadh Homepage Video -->
+        <!-- Third Column: Riyadh Homepage Video (Manual) -->
         <div class="macbook-mockup-wrapper">
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video src="images/livgolf/riyadh homepage.mp4" muted loop playsinline></video>
-                        <button class="video-play-button" aria-label="Play video">
+                        <video data-src="images/livgolf/riyadh homepage.mp4" muted loop playsinline preload="metadata"></video>
+                        <div class="video-progress-container">
+                            <div class="video-progress-bar"></div>
+                        </div>
+                        <button class="video-play-button manual-play-button" aria-label="Play video">
                             <svg class="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 5v14l11-7z" fill="currentColor"/>
                             </svg>
@@ -155,13 +164,16 @@
             </div>
         </div>
         
-        <!-- Fourth Column: Gift Guide Video -->
+        <!-- Fourth Column: Gift Guide Video (Manual) -->
         <div class="macbook-mockup-wrapper">
             <div class="macbook-mockup">
                 <div class="macbook-screen">
                     <div class="macbook-screen-bezel">
-                        <video src="images/livgolf/gift guide video.mp4" muted loop playsinline></video>
-                        <button class="video-play-button" aria-label="Play video">
+                        <video data-src="images/livgolf/gift guide video.mp4" muted loop playsinline preload="metadata"></video>
+                        <div class="video-progress-container">
+                            <div class="video-progress-bar"></div>
+                        </div>
+                        <button class="video-play-button manual-play-button" aria-label="Play video">
                             <svg class="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 5v14l11-7z" fill="currentColor"/>
                             </svg>
@@ -460,33 +472,328 @@
 </script>
 
 <script>
-    // Video Play/Pause Controls
+    // Optimized Video Controls with Lazy Loading, Poster Generation, and Smart Playback
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.macbook-screen-bezel').forEach(bezel => {
+        const videoBezels = document.querySelectorAll('.macbook-screen-bezel');
+        let allVideos = [];
+        
+        // Function to generate poster image from first frame
+        function generatePoster(video) {
+            return new Promise((resolve) => {
+                if (video.poster && video.poster !== '' && !video.poster.startsWith('data:')) {
+                    // Already has a poster (not a data URL we generated)
+                    resolve(video.poster);
+                    return;
+                }
+                
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                function captureFrame() {
+                    try {
+                        // Store original currentTime
+                        const wasPlaying = !video.paused;
+                        if (wasPlaying) {
+                            video.pause();
+                        }
+                        
+                        // Seek to first frame
+                        video.currentTime = 0.1;
+                        
+                        video.addEventListener('seeked', function onSeeked() {
+                            try {
+                                // Ensure video dimensions are available
+                                if (video.videoWidth === 0 || video.videoHeight === 0) {
+                                    // Wait a bit more for dimensions
+                                    setTimeout(() => {
+                                        if (video.videoWidth > 0 && video.videoHeight > 0) {
+                                            canvas.width = video.videoWidth;
+                                            canvas.height = video.videoHeight;
+                                            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                                            const posterDataUrl = canvas.toDataURL('image/jpeg', 0.95);
+                                            video.setAttribute('poster', posterDataUrl);
+                                            video.poster = posterDataUrl;
+                                            resolve(posterDataUrl);
+                                        } else {
+                                            resolve(null);
+                                        }
+                                    }, 100);
+                                    return;
+                                }
+                                
+                                canvas.width = video.videoWidth;
+                                canvas.height = video.videoHeight;
+                                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                                const posterDataUrl = canvas.toDataURL('image/jpeg', 0.95);
+                                
+                                // Set poster attribute (this is what browsers use to display)
+                                video.setAttribute('poster', posterDataUrl);
+                                video.poster = posterDataUrl;
+                                
+                                // Reset to beginning to show poster
+                                video.currentTime = 0;
+                                
+                                resolve(posterDataUrl);
+                            } catch (error) {
+                                console.log('Poster generation failed:', error);
+                                resolve(null);
+                            }
+                        }, { once: true });
+                    } catch (error) {
+                        console.log('Poster generation failed:', error);
+                        resolve(null);
+                    }
+                }
+                
+                // Wait for video to have enough data to capture frame
+                if (video.readyState >= 2) {
+                    // Video has frame data
+                    captureFrame();
+                } else if (video.readyState >= 1) {
+                    // Video has metadata, wait for frame data
+                    video.addEventListener('loadeddata', captureFrame, { once: true });
+                } else {
+                    // Wait for metadata first, then frame data
+                    video.addEventListener('loadedmetadata', () => {
+                        video.addEventListener('loadeddata', captureFrame, { once: true });
+                    }, { once: true });
+                }
+            });
+        }
+        
+        // Function to lazy load video source
+        function loadVideoSource(video) {
+            const dataSrc = video.getAttribute('data-src');
+            if (dataSrc && !video.src) {
+                video.src = dataSrc;
+                video.removeAttribute('data-src');
+                return true;
+            }
+            return false;
+        }
+        
+        // Load ALL video sources immediately to capture first frame for thumbnails
+        // This ensures all videos show a thumbnail instead of black screens
+        // Manual videos use preload="metadata" so they only load the first frame, not the full video
+        videoBezels.forEach((bezel, index) => {
+            const video = bezel.querySelector('video');
+            if (!video) return;
+            
+            // Load video source if it has data-src (for manual videos)
+            if (video.hasAttribute('data-src')) {
+                loadVideoSource(video);
+            }
+            
+            // Generate poster from first frame once video data is loaded
+            // This happens for all videos (both autoplay and manual)
+            const setupPoster = () => {
+                generatePoster(video).then((posterUrl) => {
+                    if (posterUrl && video.paused) {
+                        // Ensure video is at the beginning to show poster
+                        video.currentTime = 0;
+                    }
+                });
+            };
+            
+            // Wait for video to load enough data to capture frame
+            if (video.readyState >= 2) {
+                // Video already has frame data
+                setupPoster();
+            } else {
+                // Wait for loadeddata event (when first frame is available)
+                video.addEventListener('loadeddata', setupPoster, { once: true });
+            }
+        });
+        
+        // Intersection Observer for lazy loading full video (but first frame already loaded)
+        const lazyLoadObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bezel = entry.target;
+                    const video = bezel.querySelector('video');
+                    
+                    if (!video) return;
+                    
+                    // Video source is already loaded, just ensure poster is set
+                    if (!video.hasAttribute('data-src') && !video.poster) {
+                        video.addEventListener('loadedmetadata', () => {
+                            generatePoster(video).then(() => {
+                                video.currentTime = 0;
+                            });
+                        }, { once: true });
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        // Intersection Observer for first video autoplay (only for first video)
+        const autoplayObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const bezel = entry.target;
+                const video = bezel.querySelector('video');
+                
+                if (!video || video.hasAttribute('data-src')) return; // Skip manual videos
+                
+                if (entry.isIntersecting) {
+                    // First video is 50%+ visible, try to play
+                    const playPromise = video.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                // Autoplay started successfully
+                            })
+                            .catch(error => {
+                                console.log('Video autoplay prevented:', error);
+                            });
+                    }
+                } else {
+                    // First video is less than 50% visible, pause it
+                    video.pause();
+                }
+            });
+        }, {
+            threshold: 0.5 // 50% visibility required for autoplay
+        });
+        
+        // Initialize each video component
+        videoBezels.forEach((bezel, index) => {
             const video = bezel.querySelector('video');
             const button = bezel.querySelector('.video-play-button');
+            const progressBar = bezel.querySelector('.video-progress-bar');
             
-            if (!video || !button) return;
+            if (!video) return;
             
-            // Click handler
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (video.paused) {
-                    video.play();
-                    button.classList.add('playing');
-                } else {
-                    video.pause();
-                    button.classList.remove('playing');
+            // Store reference to all videos for pause-others logic
+            allVideos.push(video);
+            
+            // Ensure video has required attributes
+            video.setAttribute('muted', '');
+            video.setAttribute('loop', '');
+            video.setAttribute('playsinline', '');
+            
+            // First video: observe for autoplay
+            if (index === 0) {
+                autoplayObserver.observe(bezel);
+            } else {
+                // Manual videos: ensure they start paused and show poster
+                video.pause();
+                video.currentTime = 0;
+            }
+            
+            // Ensure paused videos show the poster (first frame)
+            video.addEventListener('pause', () => {
+                // Reset to first frame so poster displays
+                if (video.poster) {
+                    video.currentTime = 0;
                 }
             });
             
-            // Update button state when video ends (for looping)
+            // Progress bar update handler
+            video.addEventListener('timeupdate', () => {
+                if (progressBar && video.duration) {
+                    const progress = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = progress + '%';
+                }
+            });
+            
+            // Click handler for play/pause button
+            if (button) {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    
+                    // Pause all other videos
+                    allVideos.forEach(v => {
+                        if (v !== video && !v.paused) {
+                            v.pause();
+                            const otherButton = v.closest('.macbook-screen-bezel')?.querySelector('.video-play-button');
+                            if (otherButton) {
+                                otherButton.classList.remove('playing');
+                            }
+                        }
+                    });
+                    
+                    if (video.paused) {
+                        // Video source should already be loaded (for thumbnail)
+                        // Just play the video
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise
+                                .then(() => {
+                                    if (button) button.classList.add('playing');
+                                })
+                                .catch(error => {
+                                    console.log('Video play prevented:', error);
+                                    if (button) button.classList.remove('playing');
+                                });
+                        }
+                    } else {
+                        video.pause();
+                        // Reset to first frame to show thumbnail
+                        video.currentTime = 0;
+                        if (button) button.classList.remove('playing');
+                    }
+                });
+            }
+            
+            // Mobile: Tap video to show pause button temporarily
+            let tapTimeout;
+            if (button) {
+                video.addEventListener('click', (e) => {
+                    // Don't interfere with button clicks
+                    if (e.target === button || button.contains(e.target)) {
+                        return;
+                    }
+                    
+                    // On mobile, show button when tapping video while playing
+                    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+                        if (!video.paused) {
+                            // Video is playing, show button temporarily
+                            button.classList.add('force-show');
+                            
+                            // Auto-hide after 3 seconds
+                            clearTimeout(tapTimeout);
+                            tapTimeout = setTimeout(() => {
+                                button.classList.remove('force-show');
+                            }, 3000);
+                        }
+                    }
+                });
+            }
+            
+            // Update button state and video class based on video playback
             video.addEventListener('play', () => {
-                button.classList.add('playing');
+                video.classList.add('playing');
+                if (button) {
+                    button.classList.add('playing');
+                    // Remove force-show on mobile when playing starts
+                    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+                        button.classList.remove('force-show');
+                    }
+                }
             });
             
             video.addEventListener('pause', () => {
-                button.classList.remove('playing');
+                video.classList.remove('playing');
+                if (button) {
+                    button.classList.remove('playing');
+                    button.classList.remove('force-show'); // Remove force-show when paused
+                }
+                // Reset to first frame to show thumbnail when paused
+                if (video.poster) {
+                    video.currentTime = 0;
+                }
+            });
+            
+            // Initialize progress bar when metadata is loaded
+            video.addEventListener('loadedmetadata', () => {
+                if (progressBar && video.duration) {
+                    const progress = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = progress + '%';
+                }
             });
         });
     });
