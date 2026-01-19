@@ -127,6 +127,9 @@ body {
     position: relative;
     z-index: 2;
     text-align: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Main text with letter animations */
@@ -139,8 +142,11 @@ body {
     color: #fff;
     display: inline-flex;
     gap: 0.05em;
-    margin: 0;
+    margin: 0 auto;
     line-height: 1;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .welcome-text .letter {
@@ -193,6 +199,41 @@ body {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.7);
     margin-top: 1.5rem;
+}
+
+/* Mobile adjustments for welcome screen */
+@media (max-width: 768px) {
+    .welcome-content {
+        padding: 0 2rem;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .welcome-text {
+        font-size: clamp(2.5rem, 10vw, 6rem);
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.05em;
+        padding: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-break: keep-all;
+    }
+    
+    .welcome-text .letter {
+        flex-shrink: 0;
+    }
+}
     opacity: 0;
     transform: translateY(20px);
     animation: subtitleReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
@@ -493,6 +534,8 @@ nav > * {
     overflow-y: auto;
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
     transition: right 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
 }
 
 .mobile-menu-close {
@@ -531,6 +574,7 @@ nav > * {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex: 1;
 }
 
 .mobile-menu > ul > li {
@@ -620,16 +664,19 @@ nav > * {
 }
 
 .mobile-menu-social {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+    position: sticky;
+    bottom: 0;
     display: flex;
     align-items: center;
     gap: 1rem;
     padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: auto;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
-    width: calc(100% - 4rem);
+    width: 100%;
     justify-content: flex-end;
+    background-color: #ffffff;
+    z-index: 1;
 }
 
 .mobile-social-link {
@@ -932,6 +979,56 @@ nav > * {
 .dropdown a:hover::before {
     width: 3px;
     background-color: var(--color-primary);
+}
+
+/* Simple but creative dividers for Design dropdown */
+.menu li a[href="design.html"].has-dropdown + .dropdown li:not(:last-child) {
+    position: relative;
+}
+
+.menu li a[href="design.html"].has-dropdown + .dropdown li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 15%,
+        rgba(0, 0, 0, 0.08) 45%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.08) 55%,
+        rgba(0, 0, 0, 0.08) 85%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* Mobile menu dividers for design dropdown */
+.mobile-menu .mobile-dropdown:has(a[href="livgolf.html"]) li:not(:last-child) {
+    position: relative;
+}
+
+.mobile-menu .mobile-dropdown:has(a[href="livgolf.html"]) li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 15%,
+        rgba(0, 0, 0, 0.08) 45%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.08) 55%,
+        rgba(0, 0, 0, 0.08) 85%,
+        transparent 100%
+    );
+    pointer-events: none;
 }
 /* =========================================
    MASONRY GALLERY (For Natural Size Photos)
@@ -2433,6 +2530,36 @@ img {
     
     .collection-shape {
         display: none;
+    }
+    
+    /* Mobile adjustments for collection-row (photography collections page) */
+    .collection-row {
+        flex-direction: column;
+        height: auto;
+        min-height: 400px;
+    }
+    
+    .collection-image {
+        width: 100%;
+        height: 300px;
+    }
+    
+    .collection-row:hover .collection-image img,
+    .collection-row.touch-active .collection-image img {
+        transform: scale(1.05);
+    }
+    
+    .collection-info {
+        width: 100%;
+        padding: 2rem 1.5rem;
+    }
+    
+    .collection-info h3 {
+        font-size: 2rem;
+    }
+    
+    .collection-info p {
+        font-size: 0.85rem;
     }
 }
 
