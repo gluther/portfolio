@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="icon" type="image/png" href="images/about/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -74,6 +77,12 @@
     
     <!-- Mobile Menu -->
     <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li>
@@ -274,6 +283,7 @@
         const menuToggle = document.querySelector('.menu-toggle');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
         const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
         
         function toggleMobileMenu() {
@@ -285,6 +295,7 @@
         
         if (menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
         if (mobileOverlay) mobileOverlay.addEventListener('click', toggleMobileMenu);
+        if (mobileMenuClose) mobileMenuClose.addEventListener('click', toggleMobileMenu);
         
         mobileDropdownToggles.forEach(toggle => {
             toggle.addEventListener('click', function() {

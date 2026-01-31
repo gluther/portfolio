@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grant Luther</title>
+    <title>Grant Luther — Photography & Design</title>
     <link rel="icon" type="image/png" href="images/about/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Pinyon+Script&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
     <!-- OpenGraph Meta Tags -->
@@ -22,158 +22,1143 @@
     <meta name="twitter:title" content="Grant Luther - Photography & Design">
     <meta name="twitter:description" content="Portfolio showcasing photography and design work by Grant Luther">
     <meta name="twitter:image" content="images/about/opengraph.jpg">
+
+    <style>
+        /* =========================================
+           CREATIVE AGENCY HOMEPAGE - TACTILE MAXIMALISM
+           ========================================= */
+        
+        :root {
+            --cloud-dancer: #F0EEE9;
+            --royal-noir: #000000;
+            --warm-mahogany: #7A2E2A;
+            --mist-blue: #BFD3E7;
+            --paper-white: #FAFAF8;
+            --stone-gray: #8A8A85;
+            --charcoal: #1A1A1A;
+            --cream: #F5F3EE;
+        }
+
+        /* Custom Cursor - Optimized for performance */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--cloud-dancer);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            mix-blend-mode: difference;
+            will-change: transform;
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 0.15s ease-out, 
+                        width 0.2s ease-out, 
+                        height 0.2s ease-out,
+                        background 0.2s ease-out,
+                        border-color 0.2s ease-out;
+        }
+
+        .cursor.cursor-hover {
+            width: 50px;
+            height: 50px;
+            background: rgba(122, 46, 42, 0.8);
+            border-color: transparent;
+        }
+
+        /* Hide custom cursor on touch devices */
+        @media (hover: none) {
+            .cursor { display: none !important; }
+        }
+
+        /* Homepage Hero Override */
+        .agency-home .hero-section {
+            height: 100vh;
+            min-height: 100vh;
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================================
+           3D MOVING HERO GRID (Restored)
+           ========================================= */
+
+        .hero-background-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            perspective: 1200px;
+            perspective-origin: center center;
+        }
+
+        .background-grid-container {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(25deg) scale(1.8);
+            transform-style: preserve-3d;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            width: max-content;
+            height: auto;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .background-grid-row {
+            display: flex;
+            flex-direction: row;
+            white-space: nowrap;
+            gap: 20px;
+            width: max-content;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .row-1 { animation: scrollLeft 180s linear infinite; }
+        .row-2 { animation: scrollRight 180s linear infinite; }
+        .row-3 { animation: scrollLeft 180s linear infinite; }
+
+        @keyframes scrollLeft {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollRight {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
+        }
+
+        .background-grid-item {
+            position: relative;
+            flex-shrink: 0;
+            width: 320px;
+            height: 200px;
+            overflow: hidden;
+            pointer-events: none;
+            border-radius: 10px;
+        }
+
+        .background-grid-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            pointer-events: none;
+            filter: saturate(0.85) contrast(1.05);
+        }
+
+        .background-grid-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 100% 45% at center top, rgba(26, 26, 26, 0.85) 0%, transparent 45%),
+                radial-gradient(ellipse 100% 45% at center bottom, rgba(26, 26, 26, 0.85) 0%, transparent 45%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(122, 46, 42, 0.08) 0%, rgba(26, 26, 26, 0.3) 100%);
+            z-index: 1;
+        }
+
+        /* Kinetic Typography Hero */
+        .hero-content-agency {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 5vw;
+            max-width: 100vw;
+        }
+
+        .hero-title-kinetic {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 15vw, 14rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 0.85;
+            color: var(--cloud-dancer);
+            margin: 0;
+            position: relative;
+            cursor: default;
+            will-change: transform, opacity;
+        }
+
+        .hero-title-line {
+            display: block;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-title-text {
+            display: inline-block;
+            transform: translateY(100%);
+            animation: revealText 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-title-line:nth-child(1) .hero-title-text { animation-delay: 0.2s; }
+        .hero-title-line:nth-child(2) .hero-title-text { animation-delay: 0.35s; }
+
+        .hero-subtitle-agency {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--mist-blue);
+            margin-top: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+        }
+
+        /* CTA Button - Haptic Style */
+        .hero-cta-agency {
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        }
+
+        .btn-haptic {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 44px;
+            background: transparent;
+            color: var(--cloud-dancer);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(240, 238, 233, 0.35);
+            border-radius: 60px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-haptic::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--warm-mahogany);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-haptic:hover {
+            border-color: var(--warm-mahogany);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(122, 46, 42, 0.25);
+        }
+
+        .btn-haptic:hover::before {
+            transform: scaleX(1);
+        }
+
+        .btn-haptic svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-haptic:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Scroll Indicator - Minimal Line & Dot */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+            text-decoration: none;
+        }
+
+        .scroll-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+
+        .scroll-line::before {
+            content: '';
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(240, 238, 233, 0.6) 50%, 
+                transparent 100%);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        .scroll-line::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: rgba(240, 238, 233, 0.7);
+            border-radius: 50%;
+            margin-top: 8px;
+            animation: scrollDot 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { 
+                opacity: 0.4;
+                transform: scaleY(1);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: scaleY(1.1);
+            }
+        }
+
+        @keyframes scrollDot {
+            0%, 100% { 
+                opacity: 0.5;
+                transform: translateY(0);
+            }
+            50% { 
+                opacity: 1;
+                transform: translateY(4px);
+            }
+        }
+
+        .scroll-indicator:hover .scroll-line::before {
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(240, 238, 233, 0.9) 50%, 
+                transparent 100%);
+        }
+
+        .scroll-indicator:hover .scroll-line::after {
+            background: rgba(240, 238, 233, 1);
+        }
+
+        /* =========================================
+           WORK SECTION - ASYMMETRICAL LAYOUTS
+           ========================================= */
+
+        .work-section {
+            background: var(--cloud-dancer);
+            position: relative;
+            z-index: 20;
+            padding: 0;
+            margin-top: -80px;
+            border-radius: 40px 40px 0 0;
+            overflow: hidden;
+        }
+
+        /* =========================================
+           SECTION INTRO - HIGH-END AGENCY AESTHETIC
+           Slim transition with oversized typography
+           ========================================= */
+
+        .section-intro {
+            padding: 80px 8vw 48px;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-intro-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0;
+        }
+
+        /* Dominant oversized heading - centered, single line */
+        .section-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--royal-noir);
+            margin: 0 0 1.5rem 0;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .section-heading.visible {
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Understated description - single line */
+        .section-description {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 1;
+            color: var(--charcoal);
+            opacity: 0.55;
+            margin: 0;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-description.visible {
+            animation: fadeInUp 0.6s ease 0.15s forwards;
+        }
+
+        /* Simple line divider */
+        .section-divider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2.5rem;
+            padding: 0 8vw;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--royal-noir);
+            opacity: 0.12;
+        }
+
+        .divider-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--royal-noir);
+            opacity: 0.4;
+            white-space: nowrap;
+        }
+
+        .divider-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--warm-mahogany);
+            opacity: 0.8;
+        }
+
+        /* Projects Grid - Fixed height cards */
+        .projects-grid {
+            padding: 0 4vw 120px;
+        }
+
+        .project-row {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .project-row.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-row:nth-child(odd) {
+            grid-template-columns: 1.3fr 1fr;
+        }
+
+        .project-row:nth-child(even) {
+            grid-template-columns: 1fr 1.3fr;
+        }
+
+        /* Project Card - Fixed height approach */
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--paper-white);
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.02),
+                0 8px 16px rgba(0, 0, 0, 0.04),
+                0 16px 32px rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            height: 480px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.04),
+                0 20px 40px rgba(0, 0, 0, 0.08),
+                0 32px 64px rgba(0, 0, 0, 0.06);
+        }
+
+        .project-media {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .project-media img,
+        .project-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-media img,
+        .project-card:hover .project-media video {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-info {
+            padding: 24px 28px;
+            background: var(--paper-white);
+            flex-shrink: 0;
+        }
+
+        .project-category {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--warm-mahogany);
+            margin-bottom: 6px;
+        }
+
+        .project-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--royal-noir);
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--warm-mahogany);
+        }
+
+        /* View Arrow */
+        .project-arrow {
+            position: absolute;
+            bottom: 24px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            background: var(--royal-noir);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cloud-dancer);
+            transform: translateY(15px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+        }
+
+        .project-card:hover .project-arrow {
+            transform: translateY(0);
+            opacity: 1;
+            background: var(--warm-mahogany);
+        }
+
+        /* =========================================
+           VIEW ALL CTA SECTION
+           ========================================= */
+
+        .cta-section {
+            padding: 100px 8vw;
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(122, 46, 42, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--cloud-dancer);
+            margin: 0 0 0.75rem;
+        }
+
+        .cta-text p {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--stone-gray);
+            margin: 0;
+        }
+
+        .btn-cta-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 20px 48px;
+            background: var(--warm-mahogany);
+            color: var(--cloud-dancer);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 60px;
+            flex-shrink: 0;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-cta-large:hover {
+            background: var(--cloud-dancer);
+            color: var(--warm-mahogany);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-cta-large svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta-large:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* =========================================
+           ANIMATIONS
+           ========================================= */
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes revealText {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================
+           AGENCY NAV OVERRIDES - Simplified for performance
+           ========================================= */
+
+        .agency-home nav {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            transition: background-color 0.3s ease;
+        }
+
+        .agency-home .logo,
+        .agency-home .menu a,
+        .agency-home .has-dropdown::after,
+        .agency-home .menu-toggle {
+            color: var(--cloud-dancer) !important;
+            transition: color 0.2s ease;
+        }
+
+        .agency-home nav.scrolled {
+            background: var(--cloud-dancer) !important;
+        }
+
+        .agency-home nav.scrolled .logo,
+        .agency-home nav.scrolled .menu a,
+        .agency-home nav.scrolled .has-dropdown::after,
+        .agency-home nav.scrolled .menu-toggle {
+            color: var(--royal-noir) !important;
+        }
+
+        /* Fix dropdown link colors */
+        .agency-home nav .menu .dropdown a {
+            color: var(--royal-noir) !important;
+        }
+
+        .agency-home nav .menu .dropdown a:hover {
+            color: var(--warm-mahogany) !important;
+        }
+
+        /* =========================================
+           RESPONSIVE ADJUSTMENTS
+           ========================================= */
+
+        @media (max-width: 1024px) {
+            .project-row:nth-child(odd),
+            .project-row:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                height: 420px;
+            }
+
+            .cta-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .background-grid-item {
+                width: 220px;
+                height: 138px;
+            }
+
+            .background-grid-container {
+                top: 52%;
+                transform: translate(-50%, -50%) rotateX(22deg) scale(2.0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Hero content - tighter vertical spacing */
+            .hero-content-agency {
+                padding: 0 6vw;
+            }
+
+            .hero-title-kinetic {
+                font-size: clamp(2.8rem, 13vw, 6rem);
+                line-height: 0.9;
+            }
+
+            .hero-subtitle-agency {
+                margin-top: 1.25rem;
+                font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+            }
+
+            .hero-cta-agency {
+                margin-top: 1.5rem;
+            }
+
+            .btn-haptic {
+                padding: 14px 28px;
+                font-size: 0.75rem;
+                gap: 8px;
+                letter-spacing: 0.15em;
+            }
+
+            .btn-haptic svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .work-section {
+                border-radius: 28px 28px 0 0;
+                margin-top: -50px;
+            }
+
+            .section-intro {
+                padding: 60px 6vw 32px;
+            }
+
+            .section-heading {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+                margin-bottom: 1rem;
+            }
+
+            .section-description {
+                font-size: 0.9rem;
+                white-space: normal;
+                max-width: 340px;
+                line-height: 1.5;
+            }
+
+            .section-divider {
+                margin-top: 1.25rem;
+                padding: 0 6vw;
+                gap: 1.25rem;
+            }
+
+            .divider-label {
+                font-size: 0.6rem;
+                letter-spacing: 0.3em;
+            }
+
+            .projects-grid {
+                padding: 0 5vw 80px;
+            }
+
+            .project-card {
+                height: 380px;
+            }
+
+            .project-info {
+                padding: 18px 20px;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+
+            .scroll-indicator {
+                bottom: 80px;
+            }
+
+            .scroll-line::before {
+                height: 32px;
+            }
+
+            .scroll-line::after {
+                width: 5px;
+                height: 5px;
+                margin-top: 6px;
+            }
+
+            .cta-section {
+                padding: 70px 6vw;
+            }
+
+            .btn-cta-large {
+                padding: 14px 28px;
+                font-size: 0.75rem;
+            }
+
+            .background-grid-item {
+                width: 160px;
+                height: 100px;
+            }
+
+            .background-grid-container {
+                top: 50%;
+                transform: translate(-50%, -50%) rotateX(20deg) scale(2.4);
+            }
+
+            .background-grid-item img {
+                opacity: 0.45;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .hero-title-kinetic {
+                font-size: clamp(2.5rem, 15vw, 4rem);
+            }
+
+            .hero-subtitle-agency {
+                margin-top: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-cta-agency {
+                margin-top: 1.25rem;
+            }
+
+            .btn-haptic {
+                padding: 12px 24px;
+                font-size: 0.7rem;
+                gap: 6px;
+            }
+
+            .btn-haptic svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .scroll-indicator {
+                bottom: 70px;
+            }
+
+            .scroll-line::before {
+                height: 28px;
+            }
+
+            .scroll-line::after {
+                width: 4px;
+                height: 4px;
+                margin-top: 5px;
+            }
+
+            .section-intro {
+                padding: 40px 5vw 20px;
+            }
+
+            .section-heading {
+                font-size: clamp(1.75rem, 9vw, 2.5rem);
+                letter-spacing: -0.03em;
+                margin-bottom: 0.875rem;
+            }
+
+            .section-description {
+                font-size: 0.8rem;
+                max-width: 280px;
+                line-height: 1.5;
+            }
+
+            .section-divider {
+                margin-top: 1rem;
+                padding: 0 5vw;
+                gap: 1rem;
+            }
+
+            .divider-label {
+                font-size: 0.55rem;
+                letter-spacing: 0.25em;
+            }
+
+            .project-card {
+                height: 340px;
+            }
+        }
+
+        /* Footer color adjustments */
+        .agency-home footer {
+            background: var(--charcoal);
+            border-top: none;
+            margin-top: 0;
+        }
+
+        .agency-home .footer-content {
+            background: var(--charcoal);
+        }
+
+        .agency-home .footer-section h4 {
+            color: var(--cloud-dancer);
+        }
+
+        .agency-home .footer-section ul li a {
+            color: var(--stone-gray);
+        }
+
+        .agency-home .footer-section ul li a:hover {
+            color: var(--cloud-dancer);
+        }
+
+        .agency-home .footer-bottom {
+            background: var(--royal-noir);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .agency-home .footer-bottom p {
+            color: var(--stone-gray);
+        }
+
+        .agency-home .footer-instagram,
+        .agency-home .footer-linkedin {
+            color: var(--stone-gray);
+        }
+
+        .agency-home .footer-instagram:hover {
+            color: var(--warm-mahogany);
+        }
+
+        .agency-home .footer-linkedin:hover {
+            color: var(--mist-blue);
+        }
+    </style>
 </head>
-<body class="home">
+<body class="home agency-home">
 
-  <!-- Award-Winning Welcome Screen -->
-  <div id="welcome-screen" class="welcome-screen">
-    <div class="welcome-gradient"></div>
-    <div class="welcome-scanlines"></div>
-    <div class="welcome-content">
-      <h1 class="welcome-text">
-        <span class="letter" data-letter="G">G</span>
-        <span class="letter" data-letter="R">R</span>
-        <span class="letter" data-letter="A">A</span>
-        <span class="letter" data-letter="N">N</span>
-        <span class="letter" data-letter="T">T</span>
-        <span class="letter space"></span>
-        <span class="letter" data-letter="L">L</span>
-        <span class="letter" data-letter="U">U</span>
-        <span class="letter" data-letter="T">T</span>
-        <span class="letter" data-letter="H">H</span>
-        <span class="letter" data-letter="E">E</span>
-        <span class="letter" data-letter="R">R</span>
-      </h1>
-      <div class="welcome-subtitle">Photography and Design</div>
-    </div>
-    <div class="welcome-particles"></div>
-  </div>
+<!-- Custom Cursor -->
+<div class="cursor"></div>
 
-  <nav>
-        <a href="index.html" class="logo">GL</a>
-        <button class="menu-toggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            
-            <li>
-                <a href="photography.html" class="has-dropdown">Photography</a>
-                <ul class="dropdown">
-                    <li class="dropdown-section-header">USA</li>
-                    <li><a href="nyc.html">New York City</a></li>
-                    <li><a href="colorado.html">Colorado</a></li>
-                    <li><a href="nj.html">New Jersey</a></li>
-                    <li><a href="san francisco.html">San Francisco</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-section-header">International</li>
-                    <li><a href="singapore.html">Singapore</a></li>
-                    <li><a href="thailand.html">Thailand</a></li>
-                    <li><a href="greece.html">Greece</a></li>
-                    <li><a href="copenhagen.html">Copenhagen</a></li>
-                    <li><a href="croatia.html">Croatia</a></li>
-                    <li><a href="spain.html">Spain</a></li>
-                    <li><a href="ecuador.html">Ecuador</a></li>
-                </ul>
-            </li>
+<nav>
+    <a href="index.html" class="logo">GL</a>
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        
+        <li>
+            <a href="photography.html" class="has-dropdown">Photography</a>
+            <ul class="dropdown">
+                <li class="dropdown-section-header">USA</li>
+                <li><a href="nyc.html">New York City</a></li>
+                <li><a href="colorado.html">Colorado</a></li>
+                <li><a href="nj.html">New Jersey</a></li>
+                <li><a href="san francisco.html">San Francisco</a></li>
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-section-header">International</li>
+                <li><a href="singapore.html">Singapore</a></li>
+                <li><a href="thailand.html">Thailand</a></li>
+                <li><a href="greece.html">Greece</a></li>
+                <li><a href="copenhagen.html">Copenhagen</a></li>
+                <li><a href="croatia.html">Croatia</a></li>
+                <li><a href="spain.html">Spain</a></li>
+                <li><a href="ecuador.html">Ecuador</a></li>
+            </ul>
+        </li>
 
-            <li>
-                <a href="design.html" class="has-dropdown">Design</a>
-                <ul class="dropdown">
-                    <li><a href="livgolf.html">LIV Golf</a></li>
-                    <li><a href="gazelle.html">Gazelle Group</a></li>
-                    <li><a href="mls.html">Major League Soccer</a></li>
-                    <li><a href="independent.html">Independent Work</a></li>
-                </ul>
-            </li>
+        <li>
+            <a href="design.html" class="has-dropdown">Design</a>
+            <ul class="dropdown">
+                <li><a href="livgolf.html">LIV Golf</a></li>
+                <li><a href="gazelle.html">Gazelle Group</a></li>
+                <li><a href="mls.html">Major League Soccer</a></li>
+                <li><a href="independent.html">Independent Work</a></li>
+            </ul>
+        </li>
 
-            <li><a href="about.html">About</a></li>
-            <li class="nav-social">
-                <a href="https://instagram.com/grant.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="instagram-link">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/grantluther/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="linkedin-link">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay"></div>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <button class="mobile-menu-close" aria-label="Close menu">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li>
-                <div class="mobile-dropdown-toggle">Photography</div>
-                <ul class="mobile-dropdown">
-                    <li class="dropdown-section-header">USA</li>
-                    <li><a href="nyc.html">New York City</a></li>
-                    <li><a href="colorado.html">Colorado</a></li>
-                    <li><a href="nj.html">New Jersey</a></li>
-                    <li><a href="san francisco.html">San Francisco</a></li>
-                    <li class="dropdown-section-header">International</li>
-                    <li><a href="singapore.html">Singapore</a></li>
-                    <li><a href="thailand.html">Thailand</a></li>
-                    <li><a href="greece.html">Greece</a></li>
-                    <li><a href="copenhagen.html">Copenhagen</a></li>
-                    <li><a href="croatia.html">Croatia</a></li>
-                    <li><a href="spain.html">Spain</a></li>
-                    <li><a href="ecuador.html">Ecuador</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="mobile-dropdown-toggle">Design</div>
-                <ul class="mobile-dropdown">
-                    <li><a href="livgolf.html">LIV Golf</a></li>
-                    <li><a href="gazelle.html">Gazelle Group</a></li>
-                    <li><a href="mls.html">Major League Soccer</a></li>
-                    <li><a href="independent.html">Independent Work</a></li>
-                </ul>
-            </li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-        <div class="mobile-menu-social">
-            <a href="https://instagram.com/grant.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="mobile-social-link">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <li><a href="about.html">About</a></li>
+        <li class="nav-social">
+            <a href="https://instagram.com/grant.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="instagram-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                 </svg>
             </a>
-            <a href="https://www.linkedin.com/in/grantluther/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="mobile-social-link">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a href="https://www.linkedin.com/in/grantluther/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="linkedin-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
                 </svg>
             </a>
-        </div>
-    </div>
+        </li>
+    </ul>
+</nav>
 
- <header class="hero-section">
-    <!-- Background Image Grid -->
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+    <button class="mobile-menu-close" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>
+            <div class="mobile-dropdown-toggle">Photography</div>
+            <ul class="mobile-dropdown">
+                <li class="dropdown-section-header">USA</li>
+                <li><a href="nyc.html">New York City</a></li>
+                <li><a href="colorado.html">Colorado</a></li>
+                <li><a href="nj.html">New Jersey</a></li>
+                <li><a href="san francisco.html">San Francisco</a></li>
+                <li class="dropdown-section-header">International</li>
+                <li><a href="singapore.html">Singapore</a></li>
+                <li><a href="thailand.html">Thailand</a></li>
+                <li><a href="greece.html">Greece</a></li>
+                <li><a href="copenhagen.html">Copenhagen</a></li>
+                <li><a href="croatia.html">Croatia</a></li>
+                <li><a href="spain.html">Spain</a></li>
+                <li><a href="ecuador.html">Ecuador</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="mobile-dropdown-toggle">Design</div>
+            <ul class="mobile-dropdown">
+                <li><a href="livgolf.html">LIV Golf</a></li>
+                <li><a href="gazelle.html">Gazelle Group</a></li>
+                <li><a href="mls.html">Major League Soccer</a></li>
+                <li><a href="independent.html">Independent Work</a></li>
+            </ul>
+        </li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="mobile-menu-social">
+        <a href="https://instagram.com/grant.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="mobile-social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/grantluther/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="mobile-social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+        </a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<header class="hero-section">
+    <!-- 3D Moving Background Grid -->
     <div class="hero-background-grid">
         <div class="background-grid-container">
-            <!-- Row 1: Moves Left - Shuffled Order -->
+            <!-- Row 1: Moves Left -->
             <div class="background-grid-row row-1">
                 <div class="background-grid-item"><img src="images/colorado/colorado-24.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/singapore/singapore-20.jpg" alt=""></div>
@@ -185,14 +1170,6 @@
                 <div class="background-grid-item"><img src="images/greece/greece-12.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/colorado/colorado-23.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/singapore/singapore-17.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-7.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/thailand/thailand-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/croatia/croatia-18.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nyc/nyc-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/singapore/singapore-11.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-19.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-16.jpg" alt=""></div>
                 <!-- Duplicate for seamless loop -->
                 <div class="background-grid-item"><img src="images/colorado/colorado-24.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/singapore/singapore-20.jpg" alt=""></div>
@@ -204,17 +1181,9 @@
                 <div class="background-grid-item"><img src="images/greece/greece-12.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/colorado/colorado-23.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/singapore/singapore-17.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-7.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/thailand/thailand-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/croatia/croatia-18.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nyc/nyc-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/singapore/singapore-11.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-19.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-16.jpg" alt=""></div>
             </div>
             
-            <!-- Row 2: Moves Right - Different Shuffled Order -->
+            <!-- Row 2: Moves Right -->
             <div class="background-grid-row row-2">
                 <div class="background-grid-item"><img src="images/thailand/thailand-14.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nj/nj-7.jpg" alt=""></div>
@@ -226,14 +1195,6 @@
                 <div class="background-grid-item"><img src="images/singapore/singapore-20.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nj/nj-9.JPG" alt=""></div>
                 <div class="background-grid-item"><img src="images/greece/greece-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/colorado/colorado-24.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/thailand/thailand-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/croatia/croatia-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nyc/nyc-11.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-19.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/singapore/singapore-17.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-16.jpg" alt=""></div>
                 <!-- Duplicate for seamless loop -->
                 <div class="background-grid-item"><img src="images/thailand/thailand-14.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nj/nj-7.jpg" alt=""></div>
@@ -245,17 +1206,9 @@
                 <div class="background-grid-item"><img src="images/singapore/singapore-20.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nj/nj-9.JPG" alt=""></div>
                 <div class="background-grid-item"><img src="images/greece/greece-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/colorado/colorado-24.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/thailand/thailand-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/croatia/croatia-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nyc/nyc-11.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-19.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/singapore/singapore-17.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-16.jpg" alt=""></div>
             </div>
             
-            <!-- Row 3: Moves Left - Third Shuffled Order -->
+            <!-- Row 3: Moves Left -->
             <div class="background-grid-row row-3">
                 <div class="background-grid-item"><img src="images/singapore/singapore-17.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nj/nj-16.jpg" alt=""></div>
@@ -267,14 +1220,6 @@
                 <div class="background-grid-item"><img src="images/nj/nj-18.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nyc/nyc-11.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/colorado/colorado-23.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/greece/greece-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-7.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/thailand/thailand-14.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/croatia/croatia-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nyc/nyc-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/singapore/singapore-20.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-19.jpg" alt=""></div>
                 <!-- Duplicate for seamless loop -->
                 <div class="background-grid-item"><img src="images/singapore/singapore-17.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nj/nj-16.jpg" alt=""></div>
@@ -286,426 +1231,413 @@
                 <div class="background-grid-item"><img src="images/nj/nj-18.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/nyc/nyc-11.jpg" alt=""></div>
                 <div class="background-grid-item"><img src="images/colorado/colorado-23.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/greece/greece-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-7.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/thailand/thailand-14.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/croatia/croatia-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nyc/nyc-2.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-12.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/singapore/singapore-20.jpg" alt=""></div>
-                <div class="background-grid-item"><img src="images/nj/nj-19.jpg" alt=""></div>
             </div>
         </div>
         <div class="background-grid-gradient"></div>
     </div>
     
     <div class="hero-background-overlay"></div>
-    
+
     <!-- Hero Content -->
-    <div class="hero-content">
-        <div class="hero-glow"></div>
-        <h1 class="hero-heading">
-            <span class="hero-heading-ghost">
-                <span class="hero-heading-line-1">GRANT</span>
-                <span class="hero-heading-line-2">LUTHER</span>
+    <div class="hero-content-agency">
+        <h1 class="hero-title-kinetic">
+            <span class="hero-title-line">
+                <span class="hero-title-text">Grant</span>
             </span>
-            <span class="hero-heading-main">
-                <span class="hero-heading-line-1">GRANT</span>
-                <span class="hero-heading-line-2">LUTHER</span>
+            <span class="hero-title-line">
+                <span class="hero-title-text">Luther</span>
             </span>
         </h1>
-        <p class="hero-subheading">Photography and Design</p>
+        <p class="hero-subtitle-agency">Photography & Design</p>
+        <div class="hero-cta-agency">
+            <a href="#work" class="btn-haptic">
+                <span>Explore Work</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
     </div>
-    
-    <a href="#collections" class="scroll-down-arrow">
-        <span class="scroll-text">EXPLORE WORK</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 5v14M19 12l-7 7-7-7"/>
-        </svg>
+
+    <!-- Scroll Indicator - Minimal Line -->
+    <a href="#work" class="scroll-indicator">
+        <div class="scroll-line"></div>
     </a>
 </header>
 
-<div class="section-header" id="collections">
-        <h1>Featured Collections</h1>
+<!-- Work Section -->
+<section class="work-section" id="work">
+    <div class="section-intro">
+        <div class="section-intro-content">
+            <h2 class="section-heading">Featured Collections</h2>
+            <p class="section-description">A curated selection of photography and design projects.</p>
+        </div>
+        <div class="section-divider">
+            <div class="divider-line"></div>
+        </div>
     </div>
 
-    <section class="photography-collections">
-        
-        <!-- NYC: Matching Thailand format exactly -->
-        <a href="nyc.html" class="collection-thailand">
-            <div class="collection-shape"></div>
-            <div class="collection-thailand-image">
-                <img src="images/nyc/nyc-11.jpg" alt="New York City">
-            </div>
-            <div class="collection-thailand-info">
-                <h3>New York City</h3>
-                <p>Photography</p>
-                <div class="collection-accent"></div>
-            </div>
-        </a>
+    <div class="projects-grid">
+        <!-- Row 1 -->
+        <div class="project-row">
+            <a href="nyc.html" class="project-card">
+                <div class="project-media">
+                    <img src="images/nyc/nyc-11.jpg" alt="New York City">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Photography</span>
+                    <h3 class="project-title">New York City</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+            <a href="livgolf.html" class="project-card">
+                <div class="project-media">
+                    <video src="images/about/bryson ecom video.mp4" autoplay muted loop playsinline></video>
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Design</span>
+                    <h3 class="project-title">LIV Golf</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
 
-        <!-- LIV Golf: Matching Thailand format exactly -->
-        <a href="livgolf.html" class="collection-thailand">
-            <div class="collection-shape"></div>
-            <div class="collection-thailand-image">
-                <video src="images/about/bryson ecom video.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-            </div>
-            <div class="collection-thailand-info">
-                <h3>LIV Golf</h3>
-                <p>Design</p>
-                <div class="collection-accent"></div>
-            </div>
-        </a>
+        <!-- Row 2 -->
+        <div class="project-row">
+            <a href="san francisco.html" class="project-card">
+                <div class="project-media">
+                    <img src="images/sf/sf-1.jpg" alt="San Francisco">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Photography</span>
+                    <h3 class="project-title">San Francisco</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+            <a href="gazelle.html" class="project-card">
+                <div class="project-media">
+                    <img src="images/gazelle/gazelle-4.png" alt="Gazelle Group">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Design</span>
+                    <h3 class="project-title">Gazelle Group</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
 
-        <!-- San Francisco: Matching Thailand format exactly -->
-        <a href="san francisco.html" class="collection-thailand">
-            <div class="collection-shape"></div>
-            <div class="collection-thailand-image">
-                <img src="images/sf/sf-1.jpg" alt="San Francisco">
-            </div>
-            <div class="collection-thailand-info">
-                <h3>San Francisco</h3>
-                <p>Photography</p>
-                <div class="collection-accent"></div>
-            </div>
-        </a>
+        <!-- Row 3 -->
+        <div class="project-row">
+            <a href="singapore.html" class="project-card">
+                <div class="project-media">
+                    <img src="images/singapore/singapore-19.jpg" alt="Singapore">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Photography</span>
+                    <h3 class="project-title">Singapore</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+            <a href="thailand.html" class="project-card">
+                <div class="project-media">
+                    <img src="images/thailand/thailand-14.jpg" alt="Thailand">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Photography</span>
+                    <h3 class="project-title">Thailand</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
 
-        <!-- Gazelle: Matching Thailand format exactly -->
-        <a href="gazelle.html" class="collection-thailand">
-            <div class="collection-shape"></div>
-            <div class="collection-thailand-image">
-                <img src="images/gazelle/gazelle-4.png" alt="Gazelle Group">
-            </div>
-            <div class="collection-thailand-info">
-                <h3>Gazelle Group</h3>
-                <p>Design</p>
-                <div class="collection-accent"></div>
-            </div>
-        </a>
+        <!-- Row 4 -->
+        <div class="project-row">
+            <a href="colorado.html" class="project-card">
+                <div class="project-media">
+                    <img src="images/colorado/colorado-19.jpeg" alt="Colorado">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Photography</span>
+                    <h3 class="project-title">Colorado</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+            <a href="mls.html" class="project-card">
+                <div class="project-media">
+                    <img src="images/mls/mls-1.png" alt="Major League Soccer">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Design</span>
+                    <h3 class="project-title">Major League Soccer</h3>
+                </div>
+                <div class="project-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
 
-        <!-- Singapore: Matching Thailand format exactly -->
-        <a href="singapore.html" class="collection-thailand">
-            <div class="collection-shape"></div>
-            <div class="collection-thailand-image">
-                <img src="images/singapore/singapore-19.jpg" alt="Singapore">
-            </div>
-            <div class="collection-thailand-info">
-                <h3>Singapore</h3>
-                <p>Photography</p>
-                <div class="collection-accent"></div>
-            </div>
-        </a>
-
-        <!-- Thailand: Organic Flowing - Curved, vibrant, tropical -->
-        <a href="thailand.html" class="collection-thailand">
-            <div class="collection-shape"></div>
-            <div class="collection-thailand-image">
-                <img src="images/thailand/thailand-14.jpg" alt="Thailand">
-            </div>
-            <div class="collection-thailand-info">
-                <h3>Thailand</h3>
-                <p>Photography</p>
-                <div class="collection-accent"></div>
-            </div>
-        </a>
-
-        <!-- Colorado: Matching Thailand format exactly -->
-        <a href="colorado.html" class="collection-thailand">
-            <div class="collection-shape"></div>
-            <div class="collection-thailand-image">
-                <img src="images/colorado/colorado-19.jpeg" alt="Colorado">
-            </div>
-            <div class="collection-thailand-info">
-                <h3>Colorado</h3>
-                <p>Photography</p>
-                <div class="collection-accent"></div>
-            </div>
-        </a>
-
-    </section>
-
-    <div class="view-all-projects">
-        <a href="photography.html" class="view-all-button">
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-content">
+        <div class="cta-text">
+            <h2>See the full collection</h2>
+            <p>Discover more stories from around the world</p>
+        </div>
+        <a href="photography.html" class="btn-cta-large">
             <span>View All Projects</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
         </a>
     </div>
+</section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="photography.html">Photography</a></li>
-                    <li><a href="design.html">Design</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section footer-photography">
-                <h4>Photography</h4>
-                <ul>
-                    <li><a href="nyc.html">New York City</a></li>
-                    <li><a href="colorado.html">Colorado</a></li>
-                    <li><a href="nj.html">New Jersey</a></li>
-                    <li><a href="san francisco.html">San Francisco</a></li>
-                    <li><a href="singapore.html">Singapore</a></li>
-                    <li><a href="thailand.html">Thailand</a></li>
-                    <li><a href="greece.html">Greece</a></li>
-                    <li><a href="copenhagen.html">Copenhagen</a></li>
-                    <li><a href="croatia.html">Croatia</a></li>
-                    <li><a href="spain.html">Spain</a></li>
-                    <li><a href="ecuador.html">Ecuador</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Design</h4>
-                <ul>
-                    <li><a href="livgolf.html">LIV Golf</a></li>
-                    <li><a href="gazelle.html">Gazelle Group</a></li>
-                    <li><a href="mls.html">Major League Soccer</a></li>
-                    <li><a href="independent.html">Independent Work</a></li>
-                </ul>
-            </div>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Navigation</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="photography.html">Photography</a></li>
+                <li><a href="design.html">Design</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
         </div>
         
-        <div class="footer-bottom">
-            <p>&copy; 2026 Grant Luther. All rights reserved.</p>
-            <div class="footer-social">
-                <a href="https://instagram.com/grant.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-instagram">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/grantluther/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-linkedin">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                </a>
-            </div>
+        <div class="footer-section footer-photography">
+            <h4>Photography</h4>
+            <ul>
+                <li><a href="nyc.html">New York City</a></li>
+                <li><a href="colorado.html">Colorado</a></li>
+                <li><a href="nj.html">New Jersey</a></li>
+                <li><a href="san francisco.html">San Francisco</a></li>
+                <li><a href="singapore.html">Singapore</a></li>
+                <li><a href="thailand.html">Thailand</a></li>
+                <li><a href="greece.html">Greece</a></li>
+                <li><a href="copenhagen.html">Copenhagen</a></li>
+                <li><a href="croatia.html">Croatia</a></li>
+                <li><a href="spain.html">Spain</a></li>
+                <li><a href="ecuador.html">Ecuador</a></li>
+            </ul>
         </div>
-    </footer>
-
-    <script>
-        // This detects when elements enter the screen
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1, // Trigger when 10% visible
-            rootMargin: '0px 0px -50px 0px' // Start animation slightly before element enters viewport
-        });
-
-        // Tell the observer to watch all photo items, grid items, and collection rows
-        const hiddenElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row, .collection-thailand');
-        hiddenElements.forEach((el) => observer.observe(el));
-    </script>
+        
+        <div class="footer-section">
+            <h4>Design</h4>
+            <ul>
+                <li><a href="livgolf.html">LIV Golf</a></li>
+                <li><a href="gazelle.html">Gazelle Group</a></li>
+                <li><a href="mls.html">Major League Soccer</a></li>
+                <li><a href="independent.html">Independent Work</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Grant Luther. All rights reserved.</p>
+        <div class="footer-social">
+            <a href="https://instagram.com/grant.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-instagram">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/grantluther/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-linkedin">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+            </a>
+        </div>
+    </div>
+</footer>
 
 <script>
-        // Find the navigation bar
-        const nav = document.querySelector('nav');
-        
-        // Listen for the scroll event
-        window.addEventListener('scroll', () => {
-            // If the user has scrolled more than 50 pixels down...
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled'); // Add the white background class
-            } else {
-                // Otherwise, if they are back at the top...
-                nav.classList.remove('scrolled'); // Remove it (go back to transparent)
+// =========================================
+// OPTIMIZED CUSTOM CURSOR - Simplified for performance
+// =========================================
+(function() {
+    const cursor = document.querySelector('.cursor');
+    if (!cursor) return;
+    
+    // Skip on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        cursor.style.display = 'none';
+        return;
+    }
+    
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let rafId = null;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    }, { passive: true });
+    
+    function updateCursor() {
+        cursorX += (mouseX - cursorX) * 0.2;
+        cursorY += (mouseY - cursorY) * 0.2;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        rafId = requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+    
+    // Only track hover on specific elements, not nav
+    const hoverTargets = document.querySelectorAll('.btn-haptic, .btn-cta-large, .project-card');
+    hoverTargets.forEach(target => {
+        target.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'), { passive: true });
+        target.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'), { passive: true });
+    });
+})();
+
+// =========================================
+// SCROLL-TRIGGERED ANIMATIONS - Optimized
+// =========================================
+(function() {
+    const animatedElements = document.querySelectorAll('.section-heading, .section-description, .project-row');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once visible
             }
         });
-    </script>
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -60px 0px'
+    });
+    
+    animatedElements.forEach(el => observer.observe(el));
+})();
 
-<script>
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-        const mobileMenuClose = document.querySelector('.mobile-menu-close');
-        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-        
-        function toggleMobileMenu() {
-            menuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+// =========================================
+// NAVIGATION SCROLL - Throttled
+// =========================================
+(function() {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    
+    let ticking = false;
+    
+    function updateNav() {
+        if (window.scrollY > 80) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
         }
-        
-        if (menuToggle) {
-            menuToggle.addEventListener('click', toggleMobileMenu);
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateNav);
+            ticking = true;
         }
-        
-        if (mobileOverlay) {
-            mobileOverlay.addEventListener('click', toggleMobileMenu);
-        }
-        
-        if (mobileMenuClose) {
-            mobileMenuClose.addEventListener('click', toggleMobileMenu);
-        }
-        
-        // Close menu when clicking a menu link
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                toggleMobileMenu();
-            });
-        });
-        
-        // Mobile dropdown toggles
-        mobileDropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const dropdown = this.nextElementSibling;
-                const isActive = dropdown.classList.contains('active');
-                
-                // Close all other dropdowns
-                document.querySelectorAll('.mobile-dropdown').forEach(dd => {
-                    dd.classList.remove('active');
-                });
-                document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
-                    t.classList.remove('active');
-                });
-                
-                // Toggle current dropdown
-                if (!isActive) {
-                    dropdown.classList.add('active');
-                    this.classList.add('active');
-                }
-            });
-        });
-    </script>
+    }, { passive: true });
+})();
 
-<script>
-    // Mobile touch interactions for hover effects
-    (function() {
-        // Check if device supports touch
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        
-        if (!isTouchDevice) return; // Only run on touch devices
-        
-        // Elements that should have touch hover effects
-        const touchElements = document.querySelectorAll('.photo-item, .grid-item, .collection-row, .collection-thailand');
-        
-        touchElements.forEach(element => {
-            let touchTimeout;
-            let touchStartY = 0;
-            let touchStartX = 0;
-            let isScrolling = false;
+// =========================================
+// MOBILE MENU
+// =========================================
+(function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+    
+    function toggleMobileMenu() {
+        menuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    if (menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
+    if (mobileOverlay) mobileOverlay.addEventListener('click', toggleMobileMenu);
+    if (mobileMenuClose) mobileMenuClose.addEventListener('click', toggleMobileMenu);
+    
+    const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', toggleMobileMenu);
+    });
+    
+    mobileDropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = this.nextElementSibling;
+            const isActive = dropdown.classList.contains('active');
             
-            // Touch start - activate hover effect
-            element.addEventListener('touchstart', function(e) {
-                const touch = e.touches[0];
-                touchStartY = touch.clientY;
-                touchStartX = touch.clientX;
-                isScrolling = false;
-                
-                // Clear any existing timeout
-                clearTimeout(touchTimeout);
-                
-                // Add touch-active class
-                this.classList.add('touch-active');
-            }, { passive: true });
+            document.querySelectorAll('.mobile-dropdown').forEach(dd => dd.classList.remove('active'));
+            document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => t.classList.remove('active'));
             
-            // Touch move - check if scrolling, if so remove effect
-            element.addEventListener('touchmove', function(e) {
-                if (!e.touches[0]) return;
-                
-                const touch = e.touches[0];
-                const deltaY = Math.abs(touch.clientY - touchStartY);
-                const deltaX = Math.abs(touch.clientX - touchStartX);
-                
-                // If significant movement, user is scrolling
-                if (deltaY > 10 || deltaX > 10) {
-                    isScrolling = true;
-                    clearTimeout(touchTimeout);
-                    this.classList.remove('touch-active');
-                } else {
-                    // Keep active if still touching the element
-                    this.classList.add('touch-active');
-                }
-            }, { passive: true });
-            
-            // Touch end - remove hover effect after a delay
-            element.addEventListener('touchend', function(e) {
-                const self = this;
-                
-                // If user was scrolling, remove immediately
-                if (isScrolling) {
-                    this.classList.remove('touch-active');
-                    return;
-                }
-                
-                // Otherwise, remove after a short delay
-                touchTimeout = setTimeout(function() {
-                    self.classList.remove('touch-active');
-                }, 400);
-            }, { passive: true });
-            
-            // Touch cancel - remove hover effect immediately
-            element.addEventListener('touchcancel', function() {
-                clearTimeout(touchTimeout);
-                this.classList.remove('touch-active');
-            }, { passive: true });
-        });
-    })();
-</script>
-
-<script>
-    // Award-Winning Welcome Screen Animation
-    (function() {
-        const welcomeScreen = document.getElementById('welcome-screen');
-        if (!welcomeScreen) return;
-        
-        // Prevent scrolling during welcome screen
-        document.body.style.overflow = 'hidden';
-        
-        // Create dynamic particles
-        function createParticles() {
-            const particlesContainer = welcomeScreen.querySelector('.welcome-particles');
-            if (!particlesContainer) return;
-            
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = Math.random() * 3 + 1 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = 'rgba(255, 255, 255, ' + (Math.random() * 0.5 + 0.3) + ')';
-                particle.style.borderRadius = '50%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animation = 'particleFloat ' + (Math.random() * 10 + 10) + 's ease-in-out infinite';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particlesContainer.appendChild(particle);
+            if (!isActive) {
+                dropdown.classList.add('active');
+                this.classList.add('active');
             }
-        }
-        
-        createParticles();
-        
-        // Start exit animation after display time
-        setTimeout(function() {
-            welcomeScreen.classList.add('fade-out');
-            
-            // Hide completely after fade
-            setTimeout(function() {
-                welcomeScreen.style.display = 'none';
-                document.body.style.overflow = '';
-            }, 800);
-        }, 3000); // Show for 3 seconds
-    })();
+        });
+    });
+})();
+
+// =========================================
+// SMOOTH SCROLL
+// =========================================
+(function() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+})();
 </script>
 
 </body>
 </html>
-
