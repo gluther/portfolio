@@ -267,17 +267,7 @@
             background: rgba(26, 26, 26, 0.96);
         }
 
-        .collection-page .lightbox-btn {
-            color: var(--col-cream);
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-        }
 
-        .collection-page .lightbox-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
 
         /* =========================================
            RESPONSIVE
@@ -697,12 +687,12 @@
         document.body.appendChild(lightbox);
 
         const prevBtn = document.createElement('button');
-        prevBtn.innerText = '❮';
+        prevBtn.innerText = '❮'; prevBtn.setAttribute('aria-label', 'Previous');
         prevBtn.classList.add('lightbox-btn', 'prev');
         lightbox.appendChild(prevBtn);
 
         const nextBtn = document.createElement('button');
-        nextBtn.innerText = '❯';
+        nextBtn.innerText = '❯'; nextBtn.setAttribute('aria-label', 'Next');
         nextBtn.classList.add('lightbox-btn', 'next');
         lightbox.appendChild(nextBtn);
 

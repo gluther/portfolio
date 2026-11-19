@@ -1158,32 +1158,73 @@ img {
 .lightbox-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); /* Centers vertically */
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
     background: transparent;
-    border: none;
-    color: rgb(0, 0, 0);
-    font-size: 3rem; /* Big arrows */
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0; /* hide the text glyph; the chevron is drawn below */
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    padding: 0 30px;
     z-index: 10000;
-    transition: transform 0.2s ease, color 0.2s ease;
-    user-select: none; /* Can't highlight the text */
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 }
+
+/* Thin drawn chevron */
+.lightbox-btn::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-top: 1.5px solid currentColor;
+    border-left: 1.5px solid currentColor;
+}
+.lightbox-btn.prev::before { transform: translateX(3px) rotate(-45deg); }
+.lightbox-btn.next::before { transform: translateX(-3px) rotate(135deg); }
+
+.lightbox-btn.prev { left: 24px; }
+.lightbox-btn.next { right: 24px; }
 
 .lightbox-btn:hover {
-    transform: translateY(-50%) scale(1.2); /* Pop effect */
-    color: var(--color-primary);
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+.lightbox-btn.prev:hover { transform: translate(-3px, -50%); }
+.lightbox-btn.next:hover { transform: translate(3px, -50%); }
+
+.lightbox-btn:focus-visible {
+    outline: 1.5px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 2px;
 }
 
-.prev { left: 0; }
-.next { right: 0; }
-
-/* Hide arrows on mobile so they don't block the photo */
+/* Phones: smaller, with a faint backing so they stay visible over bright photos */
 @media (max-width: 768px) {
     .lightbox-btn {
-        font-size: 2rem;
-        padding: 0 10px;
+        width: 40px;
+        height: 40px;
+        color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
     }
+    .lightbox-btn::before { width: 10px; height: 10px; }
+    .lightbox-btn.prev { left: 10px; }
+    .lightbox-btn.next { right: 10px; }
+    .lightbox-btn.prev:hover,
+    .lightbox-btn.next:hover { transform: translateY(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lightbox-btn,
+    .lightbox-btn.prev:hover,
+    .lightbox-btn.next:hover { transition: none; transform: translateY(-50%); }
 }
 /* =========================================
    MENU DROPDOWN ARROWS
