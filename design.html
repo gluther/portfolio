@@ -158,7 +158,7 @@
         
         <a href="livgolf.html" class="collection-row">
             <div class="collection-image">
-                <video src="images/about/bryson ecom video.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                <video data-src="images/about/bryson ecom video.mp4" class="lazy-video" autoplay muted loop playsinline preload="none" style="width: 100%; height: 100%; object-fit: cover;"></video>
             </div>
             <div class="collection-info">
                 <h3>LIV Golf</h3>
@@ -168,7 +168,7 @@
 
         <a href="gazelle.html" class="collection-row">
             <div class="collection-image">
-                <img src="images/gazelle/gazelle-4.jpg" alt="Gazelle Group">
+                <img src="images/gazelle/gazelle-4.jpg" alt="Gazelle Group" width="2000" height="2000">
             </div>
             <div class="collection-info">
                 <h3>Gazelle Group</h3>
@@ -178,7 +178,7 @@
 
         <a href="mls.html" class="collection-row">
             <div class="collection-image">
-                <img src="images/mls/mls-7.png" alt="Major League Soccer">
+                <img src="images/mls/mls-7.png" alt="Major League Soccer" width="2000" height="501">
             </div>
             <div class="collection-info">
                 <h3>Major League Soccer</h3>
@@ -188,7 +188,7 @@
 
         <a href="independent.html" class="collection-row">
             <div class="collection-image">
-                <img src="images/independent/independent-6.jpg" alt="Independent Work">
+                <img src="images/independent/independent-6.jpg" alt="Independent Work" width="1333" height="2000" loading="lazy" decoding="async">
             </div>
             <div class="collection-info">
                 <h3>Independent Work</h3>
@@ -421,6 +421,18 @@
             mobileThemeToggle.addEventListener('click', toggleTheme);
         }
     })();
+</script>
+<script>
+// Lazy-load autoplay videos: attach the source only when near the viewport.
+(function () {
+    var vids = document.querySelectorAll('video.lazy-video[data-src]');
+    function load(v) { v.src = v.dataset.src; v.removeAttribute('data-src'); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '300px 0px' });
+    vids.forEach(function (v) { io.observe(v); });
+})();
 </script>
 </body>
 </html>

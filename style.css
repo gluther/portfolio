@@ -1149,6 +1149,7 @@ nav > * {
 img {
     user-select: none;
     -webkit-user-drag: none;
+    height: auto; /* width/height attributes only reserve aspect ratio; CSS still sizes images */
 }
 /* =========================================
    LIGHTBOX NAVIGATION ARROWS
