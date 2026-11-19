@@ -78,27 +78,6 @@
             background: var(--col-paper);
         }
 
-        /* Custom Cursor - inverted for light backgrounds */
-        .collection-cursor {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--col-ink);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease;
-            will-change: transform;
-        }
-
-        .collection-cursor.hovering {
-            width: 50px;
-            height: 50px;
-            background: transparent;
-            border: 1.5px solid var(--col-ink);
-            mix-blend-mode: normal;
-        }
 
         /* =========================================
            HERO SECTION - REFINED EDITORIAL HEADER
@@ -347,9 +326,6 @@
                 margin-bottom: 0.75rem;
             }
 
-            .collection-cursor {
-                display: none;
-            }
         }
 
         @media (max-width: 480px) {
@@ -393,7 +369,6 @@
 </head>
 <body class="collection-page">
 
-    <div class="collection-cursor"></div>
 
     <nav>
         <a href="index.html" class="logo">GRANT luther</a>
@@ -615,29 +590,6 @@
         lightboxImg.addEventListener('contextmenu', (e) => e.preventDefault());
     </script>
 
-    <!-- Custom Cursor -->
-    <script>
-        const cursor = document.querySelector('.collection-cursor');
-        let cursorX = 0, cursorY = 0, targetX = 0, targetY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            targetX = e.clientX;
-            targetY = e.clientY;
-        }, { passive: true });
-
-        function animateCursor() {
-            cursorX += (targetX - cursorX) * 0.15;
-            cursorY += (targetY - cursorY) * 0.15;
-            cursor.style.transform = `translate(${cursorX - 4}px, ${cursorY - 4}px)`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        document.querySelectorAll('.collection-photo').forEach(photo => {
-            photo.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-            photo.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-        });
-    </script>
 
     <!-- Scroll Animations -->
     <script>
