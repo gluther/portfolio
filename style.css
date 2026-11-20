@@ -912,7 +912,7 @@ nav > * {
 }
 
 /* Photography dropdown - two columns for sections */
-.menu li a[href="photography.html"].has-dropdown + .dropdown {
+.menu li a[href*="photography"].has-dropdown + .dropdown {
     min-width: 420px; /* Wider to accommodate two columns */
     grid-template-columns: 1fr 1fr; /* Two equal columns */
     grid-auto-flow: row;
@@ -923,7 +923,7 @@ nav > * {
     display: block; /* Show as block by default */
 }
 
-.menu li:hover a[href="photography.html"].has-dropdown + .dropdown {
+.menu li:hover a[href*="photography"].has-dropdown + .dropdown {
     display: grid; /* Show as grid for photography */
 }
 
@@ -947,7 +947,7 @@ nav > * {
 }
 
 /* Only span columns in photography dropdown (grid layout) */
-.menu li a[href="photography.html"].has-dropdown + .dropdown .dropdown-section-header {
+.menu li a[href*="photography"].has-dropdown + .dropdown .dropdown-section-header {
     grid-column: 1 / -1; /* Span across both columns */
 }
 
@@ -965,7 +965,7 @@ nav > * {
 }
 
 /* Only span columns in photography dropdown (grid layout) */
-.menu li a[href="photography.html"].has-dropdown + .dropdown .dropdown-divider {
+.menu li a[href*="photography"].has-dropdown + .dropdown .dropdown-divider {
     grid-column: 1 / -1; /* Span across both columns */
 }
 
@@ -1003,11 +1003,11 @@ nav > * {
 }
 
 /* Simple but creative dividers for Design dropdown */
-.menu li a[href="design.html"].has-dropdown + .dropdown li:not(:last-child) {
+.menu li a[href*="design"].has-dropdown + .dropdown li:not(:last-child) {
     position: relative;
 }
 
-.menu li a[href="design.html"].has-dropdown + .dropdown li:not(:last-child)::after {
+.menu li a[href*="design"].has-dropdown + .dropdown li:not(:last-child)::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -1028,11 +1028,11 @@ nav > * {
 }
 
 /* Mobile menu dividers for design dropdown */
-.mobile-menu .mobile-dropdown:has(a[href="livgolf.html"]) li:not(:last-child) {
+.mobile-menu .mobile-dropdown:has(a[href*="livgolf"]) li:not(:last-child) {
     position: relative;
 }
 
-.mobile-menu .mobile-dropdown:has(a[href="livgolf.html"]) li:not(:last-child)::after {
+.mobile-menu .mobile-dropdown:has(a[href*="livgolf"]) li:not(:last-child)::after {
     content: '';
     position: absolute;
     bottom: 0;

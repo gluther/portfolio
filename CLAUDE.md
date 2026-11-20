@@ -10,6 +10,7 @@ Persistent context, design guardrails, and deployment rules for Claude sessions 
 - **Repo:** `github.com/gluther/portfolio`, default branch `main`.
 - **CI/CD:** GitHub `main` is connected directly to Netlify. **Every push/merge to `main` triggers a live production deploy to 6rant.com.** Treat any push to `main` as shipping to production. Commit/push only when Grant asks.
 - **Deploys cost credits — batch them.** Netlify's free plan has 300 credits/month and each production deploy costs 15 (~20 deploys/month), plus bandwidth. Commit locally as you go, verify locally, and push **once per batch of work**, only after Grant confirms. Never push a series of small fixes one by one.
+- **Netlify rewrites links ("Pretty URLs"):** on the live site `href="design.html"` is served as `href="/design"`. CSS/JS that matches on `.html` hrefs (e.g. `a[href="photography.html"]`) works locally but **not live** — use classes or substring matches (`a[href*="photography"]`) instead. The nav dropdown rules in `style.css` were switched to substring matches for this reason.
 - **Local preview:** `preview_start` can't read the Desktop folder (macOS permissions). Run `python3 -m http.server 8765 --bind 127.0.0.1` from the repo via Bash in the background, then open `http://127.0.0.1:8765/` in the browser pane.
 
 ### Actual stack (verified 2026-11-18)
