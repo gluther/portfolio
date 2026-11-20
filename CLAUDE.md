@@ -9,6 +9,8 @@ Persistent context, design guardrails, and deployment rules for Claude sessions 
 - **Site:** Personal photography and design portfolio for Grant Luther — **6rant.com**.
 - **Repo:** `github.com/gluther/portfolio`, default branch `main`.
 - **CI/CD:** GitHub `main` is connected directly to Netlify. **Every push/merge to `main` triggers a live production deploy to 6rant.com.** Treat any push to `main` as shipping to production. Commit/push only when Grant asks.
+- **Deploys cost credits — batch them.** Netlify's free plan has 300 credits/month and each production deploy costs 15 (~20 deploys/month), plus bandwidth. Commit locally as you go, verify locally, and push **once per batch of work**, only after Grant confirms. Never push a series of small fixes one by one.
+- **Local preview:** `preview_start` can't read the Desktop folder (macOS permissions). Run `python3 -m http.server 8765 --bind 127.0.0.1` from the repo via Bash in the background, then open `http://127.0.0.1:8765/` in the browser pane.
 
 ### Actual stack (verified 2026-11-18)
 
@@ -51,7 +53,8 @@ There is no build to run, so before finalizing changes:
   - Typography: crisp white / off-white `#ffffff` / `#f8f8f8`.
   - Content: clean white rounded content card (`border-radius: 40px 40px 0 0`, i.e. the `rounded-t-[40px]` look) overlapping the hero below the fold.
   - Note: `index.html` `:root` currently defines an older palette (`--charcoal #1A1A1A`, `--warm-mahogany #7A2E2A`, `--cloud-dancer #F0EEE9`, etc.) and the hero overlay uses a mahogany-tinted gradient. Migrate toward the target palette when touching those areas.
-- **Typography (target):** Expressive display face (**Syne** or **Bricolage Grotesque**) for major headings, paired with clean, wide-tracked uppercase sans labels for subheadings (`PHOTOGRAPHY AND DESIGN`) and navigation (`HOME`, `PHOTOGRAPHY +`, `DESIGN +`, `ABOUT`). Currently the site uses Space Grotesk + Instrument Serif; switching display fonts means updating the Google Fonts `<link>` in every page.
+- **⚠️ Update 2026-11-19:** Grant rejected a Bricolage Grotesque homepage redesign as looking "too Claude-y" and generic. **Keep the current fonts (Space Grotesk + Instrument Serif)** and keep the scrolling 3D mosaic hero — he likes that it's different. The homepage redesign is deferred.
+- **Typography (original target, superseded above):** Expressive display face (**Syne** or **Bricolage Grotesque**) for major headings, paired with clean, wide-tracked uppercase sans labels for subheadings (`PHOTOGRAPHY AND DESIGN`) and navigation (`HOME`, `PHOTOGRAPHY +`, `DESIGN +`, `ABOUT`). Currently the site uses Space Grotesk + Instrument Serif; switching display fonts means updating the Google Fonts `<link>` in every page.
 - Since there is no Tailwind, Tailwind-style values in this doc (e.g. `bg-black/40`, `tracking-[0.2em]`) describe the **intended CSS values**; implement them in plain CSS.
 
 ---

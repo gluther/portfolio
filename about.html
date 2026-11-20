@@ -44,7 +44,7 @@
             </li>
 
             <li>
-                <a href="design.html">Design</a>
+                <a href="design.html" class="has-dropdown">Design</a>
                 <ul class="dropdown">
                     <li><a href="livgolf.html">LIV Golf</a></li>
                     <li><a href="gazelle.html">Gazelle Group</a></li>
@@ -167,6 +167,61 @@
     <!-- Main About Content -->
     <section class="about-content">
         <!-- Stats Section -->
+        <div class="about-experience">
+            <h3>Experience</h3>
+            <ol class="xp-track">
+                <li class="xp-item" style="--i: 0">
+                    <div class="xp-logo"><img src="images/about/ussflogo.png" alt="US Soccer Foundation logo" width="320" height="275"></div>
+                    <span class="xp-dot"></span>
+                    <div class="xp-meta">
+                        <p class="xp-years">2021</p>
+                        <p class="xp-name">US Soccer Foundation</p>
+                    </div>
+                </li>
+                <li class="xp-item" style="--i: 1">
+                    <a href="mls.html" class="xp-link">
+                        <div class="xp-logo"><img src="images/about/mlslogo.svg" alt="Major League Soccer logo" width="424" height="448"></div>
+                        <span class="xp-dot"></span>
+                        <div class="xp-meta">
+                            <p class="xp-years">2022</p>
+                            <p class="xp-name">Major League Soccer</p>
+                            <span class="xp-more">View work →</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="xp-item" style="--i: 2">
+                    <a href="gazelle.html" class="xp-link">
+                        <div class="xp-logo xp-logo-wide"><img src="images/about/gazellelogo.png" alt="Gazelle Group logo" width="360" height="66"></div>
+                        <span class="xp-dot"></span>
+                        <div class="xp-meta">
+                            <p class="xp-years">2023 — 2024</p>
+                            <p class="xp-name">Gazelle Group</p>
+                            <span class="xp-more">View work →</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="xp-item" style="--i: 3">
+                    <a href="livgolf.html" class="xp-link">
+                        <div class="xp-logo xp-logo-wide"><img src="images/about/livgolflogo.jpg" alt="LIV Golf logo" width="1566" height="294"></div>
+                        <span class="xp-dot"></span>
+                        <div class="xp-meta">
+                            <p class="xp-years">2024 — 2026</p>
+                            <p class="xp-name">LIV Golf</p>
+                            <span class="xp-more">View work →</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="xp-item xp-current" style="--i: 4">
+                    <div class="xp-logo xp-logo-box"><img src="images/about/summitlogo.png" alt="Summit Golf Brands logo" width="400" height="115"></div>
+                    <span class="xp-dot"></span>
+                    <div class="xp-meta">
+                        <p class="xp-years">2026 <span class="xp-now">Now</span></p>
+                        <p class="xp-name">Summit Golf Brands</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
         <div class="about-stats">
             <div class="stat-item">
                 <div class="stat-number" data-target="22">0</div>
@@ -234,12 +289,41 @@
         <div class="about-skills">
             <h3>Software & Tools</h3>
             <div class="skills-grid">
-                <div class="skill-item">Adobe Illustrator</div>
-                <div class="skill-item">Adobe Photoshop</div>
-                <div class="skill-item">Adobe Lightroom</div>
-                <div class="skill-item">Adobe Premiere</div>
-                <div class="skill-item">Cursor/VS Code</div>
-                <div class="skill-item">FL Studio/Logic Pro X</div>
+                <div class="skill-item">
+                    <span class="skill-icons"><img src="images/skills/illustrator.svg" alt="" width="256" height="250"></span>
+                    <span class="skill-name">Adobe Illustrator</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icons"><img src="images/skills/photoshop.svg" alt="" width="256" height="250"></span>
+                    <span class="skill-name">Adobe Photoshop</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icons"><img src="images/skills/lightroom.svg" alt="" width="256" height="250"></span>
+                    <span class="skill-name">Adobe Lightroom</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icons"><img src="images/skills/premiere.svg" alt="" width="256" height="250"></span>
+                    <span class="skill-name">Adobe Premiere</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icons"><img src="images/skills/shopify.svg" alt="" width="256" height="292"></span>
+                    <span class="skill-name">Shopify</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icons">
+                        <img src="images/skills/claude.svg" alt="" width="256" height="257">
+                        <img src="images/skills/cursor.svg" alt="" width="256" height="292">
+                        <img src="images/skills/vscode.svg" alt="" width="256" height="254">
+                    </span>
+                    <span class="skill-name">Claude/Cursor/VS Code</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icons">
+                        <img src="images/skills/flstudio.png" alt="" width="128" height="128">
+                        <img src="images/skills/logic.svg" alt="" width="48" height="48">
+                    </span>
+                    <span class="skill-name">FL Studio/Logic Pro X</span>
+                </div>
             </div>
         </div>
 
@@ -374,5 +458,19 @@
             </div>
         </div>
     </footer>
+<script>
+// Experience timeline: draw the rule and reveal each stop when it scrolls into view
+(function () {
+    var track = document.querySelector('.xp-track');
+    if (!track) return;
+    if (!('IntersectionObserver' in window)) { track.classList.add('in'); return; }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { track.classList.add('in'); io.disconnect(); }
+        });
+    }, { threshold: 0.35 });
+    io.observe(track);
+})();
+</script>
 </body>
 </html>
