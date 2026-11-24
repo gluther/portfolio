@@ -183,6 +183,19 @@
             margin: 0 auto;
         }
 
+        /* Row order: script deals tiles left-to-right into flex columns
+           (1, 2, 3 across, then 4 under 1). The column-gap values above and in
+           the breakpoints below still set the spacing. */
+        .collection-grid.is-rows {
+            columns: auto !important;
+            display: flex;
+            align-items: flex-start;
+        }
+        .masonry-col {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
         .collection-photo {
             break-inside: avoid;
             margin-bottom: 1.25rem;
@@ -492,27 +505,27 @@
             <div class="collection-photo"><img src="images/lisbon/lisbon-24.jpg" alt="Lisbon" width="2000" height="1333"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-29.jpg" alt="Lisbon" width="2000" height="1333"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-31.jpg" alt="Lisbon" width="1333" height="2000"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-32.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-28.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-30.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-32.jpg" alt="Lisbon" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-28.jpg" alt="Lisbon" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-30.jpg" alt="Lisbon" width="1333" height="2000"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-11.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-22.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-1.jpg" alt="Lisbon" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-2.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-3.jpg" alt="Lisbon" width="2000" height="1332" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-4.jpg" alt="Lisbon" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-4.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-5.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-6.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-7.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-8.jpg" alt="Lisbon" width="1333" height="2000"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-9.jpg" alt="Lisbon" width="1332" height="2000"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-10.jpg" alt="Lisbon" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-8.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-9.jpg" alt="Lisbon" width="1332" height="2000" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-10.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-12.jpg" alt="Lisbon" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-13.jpg" alt="Lisbon" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-14.jpg" alt="Lisbon" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-15.jpg" alt="Lisbon" width="2000" height="1333" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-16.jpg" alt="Lisbon" width="2000" height="1333"></div>
-            <div class="collection-photo"><img src="images/lisbon/lisbon-17.jpg" alt="Lisbon" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-16.jpg" alt="Lisbon" width="2000" height="1333" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/lisbon/lisbon-17.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-18.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-19.jpg" alt="Lisbon" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-20.jpg" alt="Lisbon" width="1333" height="2000" loading="lazy" decoding="async"></div>
@@ -595,6 +608,29 @@
                 });
             }, { rootMargin: '200px 0px' });
             vids.forEach(v => io.observe(v));
+        })();
+    </script>
+    <script>
+        // Row order: deal tiles left-to-right into columns so the file order
+        // reads across (1, 2, 3, then 4 under 1). 3 columns on desktop, 2 at <=1024px,
+        // matching the breakpoints in the CSS. Without JS the CSS columns still work.
+        (function () {
+            const grid = document.querySelector('.collection-grid');
+            if (!grid) return;
+            const tiles = [...grid.querySelectorAll(':scope > .collection-photo')];
+            const twoCols = window.matchMedia('(max-width: 1024px)');
+            let current = 0;
+            function layout() {
+                const n = twoCols.matches ? 2 : 3;
+                if (n === current) return;
+                current = n;
+                const cols = Array.from({ length: n }, () => { const c = document.createElement('div'); c.className = 'masonry-col'; return c; });
+                tiles.forEach((tile, i) => cols[i % n].appendChild(tile));
+                grid.replaceChildren(...cols);
+                grid.classList.add('is-rows');
+            }
+            layout();
+            twoCols.addEventListener('change', layout);
         })();
     </script>
     <script>
