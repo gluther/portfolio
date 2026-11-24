@@ -3056,6 +3056,18 @@ footer {
     animation: aboutTaglineReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
+/* Roles: one line on desktop with thin dot separators; never split a role */
+.about-tagline .role { white-space: nowrap; }
+.about-tagline .role-sep {
+    margin: 0 0.2em;
+    color: #bbb;
+}
+/* Below ~1000px the single line would wrap mid-list: stack one role per line */
+@media (max-width: 1000px) {
+    .about-tagline .role { display: block; }
+    .about-tagline .role-sep { display: none; }
+}
+
 @keyframes aboutTaglineReveal {
     to {
         opacity: 1;
@@ -3696,8 +3708,10 @@ footer {
     
     .about-tagline {
         font-size: 1.1rem;
+        line-height: 1.55;
     }
-    
+
+
     .about-stats {
         grid-template-columns: 1fr;
         gap: 40px;
