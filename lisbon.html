@@ -215,6 +215,40 @@
             transform: scale(1.03);
         }
 
+        /* Video tile: behaves like a photo, plays muted while on screen */
+        .collection-video {
+            position: relative;
+        }
+        .collection-video video {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .collection-video:hover video {
+            transform: scale(1.03);
+        }
+        .video-badge {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            padding: 6px 11px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            pointer-events: none;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        /* Phones: small tile, so just a compact play button */
+        @media (max-width: 768px) {
+            .video-badge { left: 8px; bottom: 8px; padding: 5px 8px; font-size: 0.62rem; }
+            .video-badge-text { display: none; }
+        }
+
         /* =========================================
            FOOTER - WARM & REFINED
            ========================================= */
@@ -451,6 +485,10 @@
 
     <section class="collection-gallery">
         <div class="collection-grid">
+            <div class="collection-photo collection-video">
+                <video class="tile-video" muted loop playsinline preload="none" poster="images/lisbon/lisbon-video-poster.jpg" data-src="images/lisbon/lisbon-video-tile.mp4" data-full="images/lisbon/lisbon-video.mp4" width="1920" height="1080" aria-label="Lisbon trip video"></video>
+                <span class="video-badge" aria-hidden="true">▶<span class="video-badge-text">&nbsp;Play with sound</span></span>
+            </div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-1.jpg" alt="Lisbon" width="2000" height="1333"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-2.jpg" alt="Lisbon" width="1333" height="2000"></div>
             <div class="collection-photo"><img src="images/lisbon/lisbon-3.jpg" alt="Lisbon" width="2000" height="1332"></div>
@@ -491,22 +529,68 @@
     </footer>
 
     <script>
+        // Lightbox for photos and the video tile (arrows move through both, in grid order)
         const lightbox = document.createElement('div'); lightbox.id = 'lightbox'; document.body.appendChild(lightbox);
         const prevBtn = document.createElement('button'); prevBtn.innerText = '❮'; prevBtn.setAttribute('aria-label', 'Previous'); prevBtn.classList.add('lightbox-btn', 'prev'); lightbox.appendChild(prevBtn);
         const nextBtn = document.createElement('button'); nextBtn.innerText = '❯'; nextBtn.setAttribute('aria-label', 'Next'); nextBtn.classList.add('lightbox-btn', 'next'); lightbox.appendChild(nextBtn);
         const lightboxImg = document.createElement('img'); lightbox.appendChild(lightboxImg);
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.collection-photo img');
-        const totalImages = images.length;
+        const lightboxVideo = document.createElement('video');
+        lightboxVideo.controls = true; lightboxVideo.playsInline = true; lightboxVideo.preload = 'none'; lightboxVideo.style.display = 'none';
+        lightbox.appendChild(lightboxVideo);
+
+        const items = [...document.querySelectorAll('.collection-photo')].map(tile => {
+            const img = tile.querySelector('img');
+            return img ? { type: 'img', el: img } : { type: 'video', el: tile.querySelector('video') };
+        });
         const photoCountEl = document.getElementById('photo-count');
-        if (photoCountEl) photoCountEl.textContent = totalImages;
-        function showImage(index) { if (index >= totalImages) currentIndex = 0; else if (index < 0) currentIndex = totalImages - 1; else currentIndex = index; lightboxImg.src = images[currentIndex].src; }
-        images.forEach((img, index) => { img.addEventListener('click', () => { currentIndex = index; showImage(currentIndex); lightbox.classList.add('active'); lightbox.style.display = 'flex'; }); img.addEventListener('contextmenu', (e) => e.preventDefault()); });
-        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
-        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
-        lightbox.addEventListener('click', (e) => { if (e.target === e.currentTarget) lightbox.style.display = 'none'; });
-        document.addEventListener('keydown', (e) => { if (lightbox.style.display === 'flex') { if (e.key === 'ArrowRight') showImage(currentIndex + 1); if (e.key === 'ArrowLeft') showImage(currentIndex - 1); if (e.key === 'Escape') lightbox.style.display = 'none'; } });
+        if (photoCountEl) photoCountEl.textContent = items.filter(i => i.type === 'img').length;
+
+        let currentIndex = 0;
+        function showItem(index) {
+            currentIndex = (index + items.length) % items.length;
+            const item = items[currentIndex];
+            if (item.type === 'img') {
+                lightboxVideo.pause();
+                lightboxVideo.style.display = 'none';
+                lightboxImg.style.display = '';
+                lightboxImg.src = item.el.src;
+            } else {
+                lightboxImg.style.display = 'none';
+                lightboxVideo.style.display = '';
+                lightboxVideo.poster = item.el.poster;
+                if (lightboxVideo.getAttribute('src') !== item.el.dataset.full) lightboxVideo.src = item.el.dataset.full;
+                const p = lightboxVideo.play(); if (p && p.catch) p.catch(() => {});
+            }
+        }
+        function openLightbox(index) { showItem(index); lightbox.classList.add('active'); lightbox.style.display = 'flex'; }
+        function closeLightbox() { lightboxVideo.pause(); lightbox.style.display = 'none'; }
+
+        items.forEach((item, index) => {
+            item.el.addEventListener('click', () => openLightbox(index));
+            item.el.addEventListener('contextmenu', (e) => e.preventDefault());
+        });
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showItem(currentIndex + 1); });
+        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showItem(currentIndex - 1); });
+        lightbox.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (lightbox.style.display === 'flex') { if (e.key === 'ArrowRight') showItem(currentIndex + 1); if (e.key === 'ArrowLeft') showItem(currentIndex - 1); if (e.key === 'Escape') closeLightbox(); } });
         lightboxImg.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Grid video: load and play muted only while on screen
+        (function () {
+            const vids = document.querySelectorAll('video.tile-video');
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!vids.length || reduce || !('IntersectionObserver' in window)) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const v = entry.target;
+                    if (entry.isIntersecting) {
+                        if (v.dataset.src) { v.src = v.dataset.src; v.removeAttribute('data-src'); }
+                        const p = v.play(); if (p && p.catch) p.catch(() => {});
+                    } else if (!v.paused) { v.pause(); }
+                });
+            }, { rootMargin: '200px 0px' });
+            vids.forEach(v => io.observe(v));
+        })();
     </script>
     <script>
         const photoObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); photoObserver.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
