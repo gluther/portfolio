@@ -454,21 +454,21 @@
             <div class="collection-photo"><img src="images/singapore/singapore-1.jpg" alt="Singapore" width="1333" height="2000"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-2.jpg" alt="Singapore" width="1333" height="2000"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-3.jpg" alt="Singapore" width="1333" height="2000"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-4.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-5.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-6.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-7.jpg" alt="Singapore" width="1333" height="2000"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-8.jpg" alt="Singapore" width="2000" height="1333"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-4.jpg" alt="Singapore" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-5.jpg" alt="Singapore" width="2000" height="1333"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-6.jpg" alt="Singapore" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-7.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-8.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-9.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-10.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-11.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-12.jpg" alt="Singapore" width="2000" height="1333"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-13.jpg" alt="Singapore" width="1333" height="2000"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-14.jpg" alt="Singapore" width="2000" height="1333"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-15.jpg" alt="Singapore" width="1333" height="2000"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-16.jpg" alt="Singapore" width="2000" height="1333"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-17.jpg" alt="Singapore" width="2000" height="1333"></div>
-            <div class="collection-photo"><img src="images/singapore/singapore-18.jpg" alt="Singapore" width="1333" height="2000"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-12.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-13.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-14.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-15.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-16.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-17.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
+            <div class="collection-photo"><img src="images/singapore/singapore-18.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-19.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-20.jpg" alt="Singapore" width="2000" height="1333" loading="lazy" decoding="async"></div>
             <div class="collection-photo"><img src="images/singapore/singapore-21.jpg" alt="Singapore" width="1333" height="2000" loading="lazy" decoding="async"></div>
@@ -517,5 +517,6 @@
         menuToggle?.addEventListener('click', toggleMobileMenu); mobileOverlay?.addEventListener('click', toggleMobileMenu); mobileMenuClose?.addEventListener('click', toggleMobileMenu);
         document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => { toggle.addEventListener('click', function() { const dropdown = this.nextElementSibling; const isActive = dropdown.classList.contains('active'); document.querySelectorAll('.mobile-dropdown').forEach(dd => dd.classList.remove('active')); document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => t.classList.remove('active')); if (!isActive) { dropdown.classList.add('active'); this.classList.add('active'); } }); });
     </script>
+<script src="gallery-rows.js"></script>
 </body>
 </html>
