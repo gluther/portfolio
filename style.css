@@ -606,6 +606,14 @@ nav > * {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    /* Match the Home / About links (toggles are divs, so they didn't inherit it) */
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.75rem 0;
+    color: #111;
 }
 
 .mobile-menu .mobile-dropdown-toggle::after {
@@ -703,6 +711,87 @@ nav > * {
 
 .mobile-social-link:last-child:hover {
     color: #004E89;
+}
+
+/* -----------------------------------------
+   PHONE MENU FOOTER: moving photo strip + contact row
+   ----------------------------------------- */
+.mobile-menu-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+/* A single row of small photos that drifts left, echoing the homepage mosaic.
+   Runs only while the menu is open. */
+.mobile-menu-strip {
+    margin: 0 -2rem 1.5rem;           /* bleed to the panel edges */
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+.mobile-menu-strip-track {
+    display: flex;
+    gap: 8px;
+    width: max-content;
+    animation: menuStrip 38s linear infinite;
+}
+.mobile-menu:not(.active) .mobile-menu-strip-track {
+    animation-play-state: paused;
+}
+.mobile-menu-strip img {
+    display: block;
+    width: 150px;
+    height: 104px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+@keyframes menuStrip {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); } /* track holds the photos twice */
+}
+
+/* Contact row: email on the left, social icons on the right */
+.mobile-menu-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.mobile-menu .mobile-menu-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.mobile-menu-footer .mobile-menu-social {
+    position: static;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border-top: none;
+    background: none;
+    gap: 0.5rem;
+}
+
+/* Smaller phones (e.g. iPhone SE): tighter strip so the closed menu fits without scrolling */
+@media (max-height: 720px) {
+    .mobile-menu-footer { padding-top: 1rem; }
+    .mobile-menu-strip { margin-bottom: 1rem; }
+    .mobile-menu-strip img { width: 120px; height: 84px; }
+    .mobile-menu-contact { padding-top: 1rem; }
+}
+
+/* Short screens (phone in landscape): drop the strip, keep the contact row */
+@media (max-height: 560px) {
+    .mobile-menu-strip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mobile-menu-strip-track { animation: none; }
 }
 
 .mobile-social-link svg {
